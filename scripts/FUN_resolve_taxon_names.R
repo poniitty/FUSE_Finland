@@ -1,3 +1,4 @@
+dataset_key <- "9ca92552-f23a-41a8-a140-01abaa31c931"
 resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
   
   tested_keys <- c(LCVP = "bae5856f-da10-4333-90a0-5a2135361b30", # The Leipzig catalogue of vascular plants
@@ -29,7 +30,6 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
             NAME <- nl$accepted
             STATUS <- nl$taxonomicStatus
           } else {
-            nl <- name_usage(key=nl$key)$data
             
             if(nl$key == nl$speciesKey){
               if(nl$taxonomicStatus == "ACCEPTED"){
@@ -91,7 +91,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                   if(nl1$taxonomicStatus == "ACCEPTED"){
                     success <- TRUE
                     NAME <- nl1$scientificName
-                    STATUS <- nl$taxonomicStatus
+                    STATUS <- nl1$taxonomicStatus
                     break
                   }
                 }
@@ -104,7 +104,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                       if(nl1$taxonomicStatus == "ACCEPTED"){
                         success <- TRUE
                         NAME <- nl1$scientificName
-                        STATUS <- nl$taxonomicStatus
+                        STATUS <- nl1$taxonomicStatus
                         break
                       }
                     }
@@ -137,7 +137,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                         
                         if(nl1$taxonomicStatus == "ACCEPTED"){
                           NAME <- nl1$scientificName
-                          STATUS <- nl$taxonomicStatus
+                          STATUS <- nl1$taxonomicStatus
                         } else {
                           NAME <- NA
                           STATUS <- NA
@@ -158,7 +158,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                       if(nl1$taxonomicStatus == "ACCEPTED"){
                         success <- TRUE
                         NAME <- nl1$scientificName
-                        STATUS <- nl$taxonomicStatus
+                        STATUS <- nl1$taxonomicStatus
                         break
                       }
                     }
@@ -171,7 +171,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                           if(nl1$taxonomicStatus == "ACCEPTED"){
                             success <- TRUE
                             NAME <- nl1$scientificName
-                            STATUS <- nl$taxonomicStatus
+                            STATUS <- nl1$taxonomicStatus
                             break
                           }
                         }
@@ -227,7 +227,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                             if(nl1$taxonomicStatus == "ACCEPTED"){
                               success <- TRUE
                               NAME <- nl1$scientificName
-                              STATUS <- nl$taxonomicStatus
+                              STATUS <- nl1$taxonomicStatus
                               break
                             }
                           }
@@ -240,7 +240,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                                 if(nl1$taxonomicStatus == "ACCEPTED"){
                                   success <- TRUE
                                   NAME <- nl1$scientificName
-                                  STATUS <- nl$taxonomicStatus
+                                  STATUS <- nl1$taxonomicStatus
                                   break
                                 }
                               }
@@ -291,7 +291,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
               if(nl1$taxonomicStatus == "ACCEPTED"){
                 success <- TRUE
                 NAME <- nl1$scientificName
-                STATUS <- nl$taxonomicStatus
+                STATUS <- nl1$taxonomicStatus
                 break
               }
             }
@@ -304,7 +304,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                   if(nl1$taxonomicStatus == "ACCEPTED"){
                     success <- TRUE
                     NAME <- nl1$scientificName
-                    STATUS <- nl$taxonomicStatus
+                    STATUS <- nl1$taxonomicStatus
                     break
                   }
                 }
@@ -344,7 +344,6 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
               NAME <- nl$accepted
               STATUS <- nl$taxonomicStatus
             } else {
-              nl <- name_usage(key=nl$key)$data
               
               if(nl$key == nl$speciesKey){
                 if(nl$taxonomicStatus == "ACCEPTED"){
@@ -406,7 +405,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                     if(nl1$taxonomicStatus == "ACCEPTED"){
                       success <- TRUE
                       NAME <- nl1$scientificName
-                      STATUS <- nl$taxonomicStatus
+                      STATUS <- nl1$taxonomicStatus
                       break
                     }
                   }
@@ -419,7 +418,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                         if(nl1$taxonomicStatus == "ACCEPTED"){
                           success <- TRUE
                           NAME <- nl1$scientificName
-                          STATUS <- nl$taxonomicStatus
+                          STATUS <- nl1$taxonomicStatus
                           break
                         }
                       }
@@ -452,7 +451,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                           
                           if(nl1$taxonomicStatus == "ACCEPTED"){
                             NAME <- nl1$scientificName
-                            STATUS <- nl$taxonomicStatus
+                            STATUS <- nl1$taxonomicStatus
                           } else {
                             NAME <- NA
                             STATUS <- NA
@@ -473,7 +472,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                         if(nl1$taxonomicStatus == "ACCEPTED"){
                           success <- TRUE
                           NAME <- nl1$scientificName
-                          STATUS <- nl$taxonomicStatus
+                          STATUS <- nl1$taxonomicStatus
                           break
                         }
                       }
@@ -486,7 +485,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                             if(nl1$taxonomicStatus == "ACCEPTED"){
                               success <- TRUE
                               NAME <- nl1$scientificName
-                              STATUS <- nl$taxonomicStatus
+                              STATUS <- nl1$taxonomicStatus
                               break
                             }
                           }
@@ -542,7 +541,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                               if(nl1$taxonomicStatus == "ACCEPTED"){
                                 success <- TRUE
                                 NAME <- nl1$scientificName
-                                STATUS <- nl$taxonomicStatus
+                                STATUS <- nl1$taxonomicStatus
                                 break
                               }
                             }
@@ -555,7 +554,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                                   if(nl1$taxonomicStatus == "ACCEPTED"){
                                     success <- TRUE
                                     NAME <- nl1$scientificName
-                                    STATUS <- nl$taxonomicStatus
+                                    STATUS <- nl1$taxonomicStatus
                                     break
                                   }
                                 }
@@ -606,7 +605,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                 if(nl1$taxonomicStatus == "ACCEPTED"){
                   success <- TRUE
                   NAME <- nl1$scientificName
-                  STATUS <- nl$taxonomicStatus
+                  STATUS <- nl1$taxonomicStatus
                   break
                 }
               }
@@ -619,7 +618,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
                     if(nl1$taxonomicStatus == "ACCEPTED"){
                       success <- TRUE
                       NAME <- nl1$scientificName
-                      STATUS <- nl$taxonomicStatus
+                      STATUS <- nl1$taxonomicStatus
                       break
                     }
                   }
