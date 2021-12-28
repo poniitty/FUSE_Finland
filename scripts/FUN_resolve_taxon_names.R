@@ -1,4 +1,3 @@
-dataset_key <- "9ca92552-f23a-41a8-a140-01abaa31c931"
 resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
   
   tested_keys <- c(LCVP = "bae5856f-da10-4333-90a0-5a2135361b30", # The Leipzig catalogue of vascular plants
