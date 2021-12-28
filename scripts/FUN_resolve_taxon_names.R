@@ -1,3 +1,5 @@
+orig_name <- "Diphasiastrum complanatum (L.)"
+dataset_key <- "9ca92552-f23a-41a8-a140-01abaa31c931"
 resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
   
   tested_keys <- c(LCVP = "bae5856f-da10-4333-90a0-5a2135361b30", # The Leipzig catalogue of vascular plants
@@ -26,8 +28,14 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
         if(nrow(nl) == 1){
           nl <- name_usage(key=nl$key)$data
           if("accepted" %in% names(nl)){
-            NAME <- nl$accepted
-            STATUS <- nl$taxonomicStatus
+            if(nl$taxonomicStatus == "ACCEPTED"){
+              NAME <- nl$scientificName
+              STATUS <- nl$taxonomicStatus
+            } else {
+              nl <- name_usage(key=nl$acceptedKey)$data
+              NAME <- nl$scientificName
+              STATUS <- nl$taxonomicStatus
+            }
           } else {
             
             if(nl$key == nl$speciesKey){
