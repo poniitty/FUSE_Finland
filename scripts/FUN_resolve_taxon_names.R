@@ -41,6 +41,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
         if(nrow(nl) == 1){
           nl <- name_usage(key=nl$key)$data
           if(nrow(nl) > 1){
+            nl <- nl[order(nl$taxonomicStatus),]
             nl <- nl[1,]
           }
           if("accepted" %in% names(nl)){
@@ -363,6 +364,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
           if(nrow(nl) == 1){
             nl <- name_usage(key=nl$key)$data
             if(nrow(nl) > 1){
+              nl <- nl[order(nl$taxonomicStatus),]
               nl <- nl[1,]
             }
             if("accepted" %in% names(nl)){
