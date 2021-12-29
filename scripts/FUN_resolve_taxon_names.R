@@ -1,12 +1,25 @@
 # orig_name <- "Diphasiastrum complanatum (L.)"
-# dataset_key <- "9ca92552-f23a-41a8-a140-01abaa31c931"
-resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
+# dataset_key <- "d9a4eedb-e985-4456-ad46-3df8472e00e8"
+# dataset <- c(WCVP = "f382f0ce-323a-4091-bb9f-add557f3a9a2")
+# resolve_taxon_name("Diphasiastrum complanatum (L.)", dataset = dataset)
+resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths()){
+  
+  if(is.null(dataset)){
+    dataset <- c(LCVP = "bae5856f-da10-4333-90a0-5a2135361b30", # The Leipzig catalogue of vascular plants
+                 GBIF = "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c", # GBIF BACKBONE
+                 LIFE = "7ddf754f-d193-4cc9-b351-99906754a03b", # Catalogue of life
+                 IPNI = "046bbc50-cae2-47ff-aa43-729fbf53f7c5", # International Plant Names Index
+                 WCVP = "f382f0ce-323a-4091-bb9f-add557f3a9a2", # The World Checklist of Vascular Plants (WCVP)
+                 TPL = "d9a4eedb-e985-4456-ad46-3df8472e00e8", # The plant list
+                 ITIS = "9ca92552-f23a-41a8-a140-01abaa31c931") # Integrated Taxonomic Information System (ITIS)
+  }
   
   tested_keys <- c(LCVP = "bae5856f-da10-4333-90a0-5a2135361b30", # The Leipzig catalogue of vascular plants
                    GBIF = "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c", # GBIF BACKBONE
                    LIFE = "7ddf754f-d193-4cc9-b351-99906754a03b", # Catalogue of life
                    IPNI = "046bbc50-cae2-47ff-aa43-729fbf53f7c5", # International Plant Names Index
                    WCVP = "f382f0ce-323a-4091-bb9f-add557f3a9a2", # The World Checklist of Vascular Plants (WCVP)
+                   TPL = "d9a4eedb-e985-4456-ad46-3df8472e00e8", # The plant list
                    ITIS = "9ca92552-f23a-41a8-a140-01abaa31c931") # Integrated Taxonomic Information System (ITIS)
   
   # Test if the given dataset id in the tested ones
@@ -21,7 +34,7 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
     resolved_temp <- data.frame() # To store names
     for(dataset_key in dataset){
       
-      tryCatch({
+      resolved_temp2 <- tryCatch({
         i <- orig_name
         nl <- name_suggest(q=i, rank = "species", datasetKey = dataset_key)$data
         
@@ -330,17 +343,16 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
           parsed <- parsenames(NAME)$canonicalname
         }
         
-        resolved_temp <- rbind.data.frame(resolved_temp,
-                                          data.frame(orig_name = orig_name,
-                                                     used_name = i,
-                                                     found_name = NAME,
-                                                     taxon_status = STATUS,
-                                                     canonical_name = parsed,
-                                                     dataset = names(which(tested_keys == dataset_key))))
+        data.frame(orig_name = orig_name,
+                   used_name = i,
+                   found_name = NAME,
+                   taxon_status = STATUS,
+                   canonical_name = parsed,
+                   dataset = names(which(tested_keys == dataset_key)))
         
       }, error = function(e) {
         tryCatch({
-          Sys.sleep(0.2)
+          Sys.sleep(0.5)
           
           i <- orig_name
           nl <- name_suggest(q=i, rank = "species", datasetKey = dataset_key)$data
@@ -644,26 +656,28 @@ resolve_taxon_name <- function(orig_name, dataset, lib.loc = .libPaths()){
             parsed <- parsenames(NAME)$canonicalname
           }
           
-          resolved_temp <- rbind.data.frame(resolved_temp,
-                                            data.frame(orig_name = orig_name,
-                                                       used_name = i,
-                                                       found_name = NAME,
-                                                       taxon_status = STATUS,
-                                                       canonical_name = parsed,
-                                                       dataset = names(which(tested_keys == dataset_key))))
+          resolved_temp2 <- data.frame(orig_name = orig_name,
+                                       used_name = i,
+                                       found_name = NAME,
+                                       taxon_status = STATUS,
+                                       canonical_name = parsed,
+                                       dataset = names(which(tested_keys == dataset_key)))
+          
         }, error = function(e) {
           
-          resolved_temp <- rbind.data.frame(resolved_temp,
-                                            data.frame(orig_name = orig_name,
-                                                       used_name = i,
-                                                       found_name = "FAILED",
-                                                       taxon_status = "FAILED",
-                                                       canonical_name = "FAILED",
-                                                       dataset = names(which(tested_keys == dataset_key))))
+          data.frame(orig_name = orig_name,
+                     used_name = i,
+                     found_name = "FAILED",
+                     taxon_status = "FAILED",
+                     canonical_name = "FAILED",
+                     dataset = names(which(tested_keys == dataset_key)))
         })
       })
+      
+      resolved_temp <- rbind.data.frame(resolved_temp, resolved_temp2)
+      
     }
-    
+    # resolved_temp
     return(resolved_temp)
     
   } else {
