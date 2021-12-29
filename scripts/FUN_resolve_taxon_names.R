@@ -1,6 +1,6 @@
-# orig_name <- "Agropogon littoralis"
+# orig_name <- "Betula nana"
 # dataset_key <- "d9a4eedb-e985-4456-ad46-3df8472e00e8"
-# dataset <- c(WCVP = "f382f0ce-323a-4091-bb9f-add557f3a9a2")
+# dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
 # resolve_taxon_name("Diphasiastrum complanatum (L.)", dataset = dataset)
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths()){
   
@@ -33,7 +33,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
     
     resolved_temp <- data.frame() # To store names
     for(dataset_key in dataset){
-      dataset_key <- "7ddf754f-d193-4cc9-b351-99906754a03b"
+      
       resolved_temp2 <- tryCatch({
         i <- orig_name
         nl <- name_suggest(q=i, rank = "species", datasetKey = dataset_key)$data
