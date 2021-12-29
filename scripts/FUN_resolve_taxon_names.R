@@ -1,7 +1,7 @@
-# orig_name <- "Betula nana"
+# orig_name <- "Pteridium pinetorum C. N. Page & R. R. Mill"
 # dataset_key <- "d9a4eedb-e985-4456-ad46-3df8472e00e8"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
-# resolve_taxon_name("Diphasiastrum complanatum (L.)", dataset = dataset)
+# resolve_taxon_name("Raphanus sativus var. sativus", dataset = dataset)
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths()){
   
   if(is.null(dataset)){
@@ -82,8 +82,10 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
             if(nrow(nl) == 1){
               
               nl <- name_usage(key=nl$key)$data
-              
-              if(nl$key == nl$speciesKey){
+              if("acceptedKey" %in% names(nl)){
+                nl <- name_usage(key=nl$acceptedKey)$data
+              }
+              if(nl$rank == "SUBSPECIES"){
                 if(nl$taxonomicStatus == "ACCEPTED"){
                   NAME <- nl$scientificName
                   STATUS <- nl$taxonomicStatus
@@ -92,7 +94,6 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                   STATUS <- NA
                 }
               } else {
-                nl <- name_usage(key=nl$speciesKey)$data
                 if(nl$key == nl$speciesKey){
                   if(nl$taxonomicStatus == "ACCEPTED"){
                     NAME <- nl$scientificName
@@ -102,8 +103,19 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                     STATUS <- NA
                   }
                 } else {
-                  NAME <- NA
-                  STATUS <- NA
+                  nl <- name_usage(key=nl$speciesKey)$data
+                  if(nl$key == nl$speciesKey){
+                    if(nl$taxonomicStatus == "ACCEPTED"){
+                      NAME <- nl$scientificName
+                      STATUS <- nl$taxonomicStatus
+                    } else {
+                      NAME <- NA
+                      STATUS <- NA
+                    }
+                  } else {
+                    NAME <- NA
+                    STATUS <- NA
+                  }
                 }
               }
               
@@ -218,8 +230,10 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                       if(nrow(nl) == 1){
                         
                         nl <- name_usage(key=nl$key)$data
-                        
-                        if(nl$key == nl$speciesKey){
+                        if("acceptedKey" %in% names(nl)){
+                          nl <- name_usage(key=nl$acceptedKey)$data
+                        }
+                        if(nl$rank == "SUBSPECIES"){
                           if(nl$taxonomicStatus == "ACCEPTED"){
                             NAME <- nl$scientificName
                             STATUS <- nl$taxonomicStatus
@@ -228,7 +242,6 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                             STATUS <- NA
                           }
                         } else {
-                          nl <- name_usage(key=nl$speciesKey)$data
                           if(nl$key == nl$speciesKey){
                             if(nl$taxonomicStatus == "ACCEPTED"){
                               NAME <- nl$scientificName
@@ -238,11 +251,21 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                               STATUS <- NA
                             }
                           } else {
-                            NAME <- NA
-                            STATUS <- NA
+                            nl <- name_usage(key=nl$speciesKey)$data
+                            if(nl$key == nl$speciesKey){
+                              if(nl$taxonomicStatus == "ACCEPTED"){
+                                NAME <- nl$scientificName
+                                STATUS <- nl$taxonomicStatus
+                              } else {
+                                NAME <- NA
+                                STATUS <- NA
+                              }
+                            } else {
+                              NAME <- NA
+                              STATUS <- NA
+                            }
                           }
                         }
-                        
                       } else {
                         if(nrow(nl) > 1){
                           success <- FALSE
@@ -368,8 +391,14 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
               nl <- nl[1,]
             }
             if("accepted" %in% names(nl)){
-              NAME <- nl$accepted
-              STATUS <- nl$taxonomicStatus
+              if(nl$taxonomicStatus == "ACCEPTED"){
+                NAME <- nl$scientificName
+                STATUS <- nl$taxonomicStatus
+              } else {
+                nl <- name_usage(key=nl$acceptedKey)$data
+                NAME <- nl$scientificName
+                STATUS <- nl$taxonomicStatus
+              }
             } else {
               
               if(nl$key == nl$speciesKey){
@@ -399,8 +428,10 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
               if(nrow(nl) == 1){
                 
                 nl <- name_usage(key=nl$key)$data
-                
-                if(nl$key == nl$speciesKey){
+                if("acceptedKey" %in% names(nl)){
+                  nl <- name_usage(key=nl$acceptedKey)$data
+                }
+                if(nl$rank == "SUBSPECIES"){
                   if(nl$taxonomicStatus == "ACCEPTED"){
                     NAME <- nl$scientificName
                     STATUS <- nl$taxonomicStatus
@@ -409,7 +440,6 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                     STATUS <- NA
                   }
                 } else {
-                  nl <- name_usage(key=nl$speciesKey)$data
                   if(nl$key == nl$speciesKey){
                     if(nl$taxonomicStatus == "ACCEPTED"){
                       NAME <- nl$scientificName
@@ -419,8 +449,19 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                       STATUS <- NA
                     }
                   } else {
-                    NAME <- NA
-                    STATUS <- NA
+                    nl <- name_usage(key=nl$speciesKey)$data
+                    if(nl$key == nl$speciesKey){
+                      if(nl$taxonomicStatus == "ACCEPTED"){
+                        NAME <- nl$scientificName
+                        STATUS <- nl$taxonomicStatus
+                      } else {
+                        NAME <- NA
+                        STATUS <- NA
+                      }
+                    } else {
+                      NAME <- NA
+                      STATUS <- NA
+                    }
                   }
                 }
                 
@@ -535,8 +576,10 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                         if(nrow(nl) == 1){
                           
                           nl <- name_usage(key=nl$key)$data
-                          
-                          if(nl$key == nl$speciesKey){
+                          if("acceptedKey" %in% names(nl)){
+                            nl <- name_usage(key=nl$acceptedKey)$data
+                          }
+                          if(nl$rank == "SUBSPECIES"){
                             if(nl$taxonomicStatus == "ACCEPTED"){
                               NAME <- nl$scientificName
                               STATUS <- nl$taxonomicStatus
@@ -545,7 +588,6 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                               STATUS <- NA
                             }
                           } else {
-                            nl <- name_usage(key=nl$speciesKey)$data
                             if(nl$key == nl$speciesKey){
                               if(nl$taxonomicStatus == "ACCEPTED"){
                                 NAME <- nl$scientificName
@@ -555,11 +597,21 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                                 STATUS <- NA
                               }
                             } else {
-                              NAME <- NA
-                              STATUS <- NA
+                              nl <- name_usage(key=nl$speciesKey)$data
+                              if(nl$key == nl$speciesKey){
+                                if(nl$taxonomicStatus == "ACCEPTED"){
+                                  NAME <- nl$scientificName
+                                  STATUS <- nl$taxonomicStatus
+                                } else {
+                                  NAME <- NA
+                                  STATUS <- NA
+                                }
+                              } else {
+                                NAME <- NA
+                                STATUS <- NA
+                              }
                             }
                           }
-                          
                         } else {
                           if(nrow(nl) > 1){
                             success <- FALSE
@@ -664,12 +716,12 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
             parsed <- parsenames(NAME)$canonicalname
           }
           
-          resolved_temp2 <- data.frame(orig_name = orig_name,
-                                       used_name = i,
-                                       found_name = NAME,
-                                       taxon_status = STATUS,
-                                       canonical_name = parsed,
-                                       dataset = names(which(tested_keys == dataset_key)))
+          data.frame(orig_name = orig_name,
+                     used_name = i,
+                     found_name = NAME,
+                     taxon_status = STATUS,
+                     canonical_name = parsed,
+                     dataset = names(which(tested_keys == dataset_key)))
           
         }, error = function(e) {
           
