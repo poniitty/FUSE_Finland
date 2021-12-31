@@ -1,7 +1,7 @@
-# orig_name <- "Pteridium pinetorum C. N. Page & R. R. Mill"
+# orig_name <- "Amsinckia intermedia Fisch. & C. A. Mey."
 # dataset_key <- "d9a4eedb-e985-4456-ad46-3df8472e00e8"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
-# resolve_taxon_name("Raphanus sativus var. sativus", dataset = dataset)
+# resolve_taxon_name("Amsinckia intermedia Fisch. & C. A. Mey.", dataset = dataset)
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths()){
   
   if(is.null(dataset)){
@@ -85,7 +85,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
               if("acceptedKey" %in% names(nl)){
                 nl <- name_usage(key=nl$acceptedKey)$data
               }
-              if(nl$rank == "SUBSPECIES"){
+              if(nl$rank == "SUBSPECIES" | nl$rank == "VARIETY"){
                 if(nl$taxonomicStatus == "ACCEPTED"){
                   NAME <- nl$scientificName
                   STATUS <- nl$taxonomicStatus
@@ -179,8 +179,13 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                           STATUS <- NA
                         }
                       } else {
-                        NAME <- NA
-                        STATUS <- NA
+                        if(nl$key == nl$speciesKey){
+                          NAME <- nl$scientificName
+                          STATUS <- nl$taxonomicStatus
+                        } else {
+                          NAME <- NA
+                          STATUS <- NA
+                        }
                       }
                     }
                   }
@@ -233,7 +238,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                         if("acceptedKey" %in% names(nl)){
                           nl <- name_usage(key=nl$acceptedKey)$data
                         }
-                        if(nl$rank == "SUBSPECIES"){
+                        if(nl$rank == "SUBSPECIES" | nl$rank == "VARIETY"){
                           if(nl$taxonomicStatus == "ACCEPTED"){
                             NAME <- nl$scientificName
                             STATUS <- nl$taxonomicStatus
@@ -367,7 +372,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
         if(is.na(NAME)){
           parsed <- NA
         } else {
-          parsed <- parsenames(NAME)$canonicalname
+          parsed <- paste(strsplit(parsenames(NAME)$canonicalname, " ")[[1]][1:2], collapse = " ")
         }
         
         data.frame(orig_name = orig_name,
@@ -431,7 +436,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                 if("acceptedKey" %in% names(nl)){
                   nl <- name_usage(key=nl$acceptedKey)$data
                 }
-                if(nl$rank == "SUBSPECIES"){
+                if(nl$rank == "SUBSPECIES" | nl$rank == "VARIETY"){
                   if(nl$taxonomicStatus == "ACCEPTED"){
                     NAME <- nl$scientificName
                     STATUS <- nl$taxonomicStatus
@@ -525,8 +530,13 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                             STATUS <- NA
                           }
                         } else {
-                          NAME <- NA
-                          STATUS <- NA
+                          if(nl$key == nl$speciesKey){
+                            NAME <- nl$scientificName
+                            STATUS <- nl$taxonomicStatus
+                          } else {
+                            NAME <- NA
+                            STATUS <- NA
+                          }
                         }
                       }
                     }
@@ -579,7 +589,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                           if("acceptedKey" %in% names(nl)){
                             nl <- name_usage(key=nl$acceptedKey)$data
                           }
-                          if(nl$rank == "SUBSPECIES"){
+                          if(nl$rank == "SUBSPECIES" | nl$rank == "VARIETY"){
                             if(nl$taxonomicStatus == "ACCEPTED"){
                               NAME <- nl$scientificName
                               STATUS <- nl$taxonomicStatus
@@ -713,7 +723,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
           if(is.na(NAME)){
             parsed <- NA
           } else {
-            parsed <- parsenames(NAME)$canonicalname
+            parsed <- paste(strsplit(parsenames(NAME)$canonicalname, " ")[[1]][1:2], collapse = " ")
           }
           
           data.frame(orig_name = orig_name,
@@ -722,7 +732,6 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                      taxon_status = STATUS,
                      canonical_name = parsed,
                      dataset = names(which(tested_keys == dataset_key)))
-          
         }, error = function(e) {
           
           data.frame(orig_name = orig_name,
