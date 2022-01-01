@@ -1,7 +1,7 @@
 # orig_name <- "Mertensia ciliata X Mertensia perplexa"
 # dataset_key <- "d9a4eedb-e985-4456-ad46-3df8472e00e8"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
-# resolve_taxon_name("Amsinckia intermedia Fisch. & C. A. Mey.", dataset = dataset)
+# resolve_taxon_name("Mertensia ciliata X Mertensia perplexa", dataset = dataset)
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths()){
   
   if(is.null(dataset)){
@@ -333,6 +333,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                 }
               }
             } else {
+              i <- NA
               NAME <- NA
               STATUS <- NA
             }
@@ -684,6 +685,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths())
                   }
                 }
               } else {
+                i <- NA
                 NAME <- NA
                 STATUS <- NA
               }
