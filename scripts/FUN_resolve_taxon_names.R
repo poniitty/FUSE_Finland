@@ -1,4 +1,4 @@
-# orig_name <- "Oxygraphis glacialis (L.) Dalla Torre"
+# orig_name <- "Linaria ×sepium G. J. Allman"
 # orig_name <- "Vaccnium myrtllus L."
 # dataset_key <- "bae5856f-da10-4333-90a0-5a2135361b30"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
@@ -1467,6 +1467,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                   NAME <- NA
                   STATUS <- NA
                   NOTE = "NOT FOUND"
+                  RANK <- NA
                   SPEC_NAME <- NA
                 } else {
                   stop()
@@ -1487,7 +1488,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                    canonical_name = "FAILED",
                    canonical_species_name = "FAILED",
                    dataset = names(which(tested_keys == dataset_key)),
-                   note = "FAILED")
+                   note = ifelse(grepl("×",orig_name),"HYBRID! RESOLVING MIGHT BE UNRELIABLE","FAILED"))
       } else {
         
         if(is.na(NAME)){
