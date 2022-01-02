@@ -1,6 +1,6 @@
-# orig_name <- "Rosa gallica L."
+# orig_name <- "Ranunculus baeckii (Fagerstr. & G. Kvist) Ericsson"
 # orig_name <- "Vaccnium myrtllus L."
-# dataset_key <- "bae5856f-da10-4333-90a0-5a2135361b30"
+# dataset_key <- "d9a4eedb-e985-4456-ad46-3df8472e00e8"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
 # resolve_taxon_name(orig_name)
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(), maxtry = 2){
@@ -829,7 +829,195 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             }
                           }
                         } else {
-                          stop()
+                          nl <- name_usage(key=nl$key)$data
+                          if(nrow(nl) == 1){
+                            if(!nl$synonym){
+                              if(nl$taxonomicStatus == "ACCEPTED"){
+                                NAME <- nl$scientificName
+                                STATUS <- nl$taxonomicStatus
+                                RANK <- nl$rank
+                                if(nl$rank == "SPECIES"){
+                                  SPEC_NAME <- nl$scientificName
+                                } else {
+                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                    if("speciesKey" %in% names(nl)){
+                                      nl <- name_usage(key=nl$speciesKey)$data
+                                      SPEC_NAME <- nl$scientificName
+                                    } else {
+                                      stop()
+                                    }
+                                  } else {
+                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                      SPEC_NAME <- NA
+                                      NOTE <- "LIKELY HIGHER LEVEL TAXON"
+                                    } else {
+                                      stop()
+                                    }
+                                  }
+                                }
+                              } else {
+                                if("acceptedKey" %in% names(nl)){
+                                  nl <- name_usage(key=nl$acceptedKey)$data
+                                  if(nl$taxonomicStatus == "ACCEPTED"){
+                                    NAME <- nl$scientificName
+                                    STATUS <- nl$taxonomicStatus
+                                    RANK <- nl$rank
+                                    if(nl$rank == "SPECIES"){
+                                      SPEC_NAME <- nl$scientificName
+                                    } else {
+                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                        if("speciesKey" %in% names(nl)){
+                                          nl <- name_usage(key=nl$speciesKey)$data
+                                          SPEC_NAME <- nl$scientificName
+                                        } else {
+                                          stop()
+                                        }
+                                      } else {
+                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                          SPEC_NAME <- NA
+                                          NOTE <- "LIKELY HIGHER LEVEL TAXON"
+                                        } else {
+                                          stop()
+                                        }
+                                      }
+                                    }
+                                  } else {
+                                    stop()
+                                  }
+                                } else {
+                                  if(nl$taxonomicStatus == "DOUBTFUL"){
+                                    NAME <- nl$scientificName
+                                    STATUS <- nl$taxonomicStatus
+                                    RANK <- nl$rank
+                                    if(nl$rank == "SPECIES"){
+                                      SPEC_NAME <- nl$scientificName
+                                    } else {
+                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                        if("speciesKey" %in% names(nl)){
+                                          nl <- name_usage(key=nl$speciesKey)$data
+                                          SPEC_NAME <- nl$scientificName
+                                        } else {
+                                          stop()
+                                        }
+                                      } else {
+                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                          SPEC_NAME <- NA
+                                          NOTE <- "LIKELY HIGHER LEVEL TAXON"
+                                        } else {
+                                          stop()
+                                        }
+                                      }
+                                    }
+                                  } else {
+                                    stop()
+                                  }
+                                }
+                              }
+                            } else {
+                              if("acceptedKey" %in% names(nl)){
+                                nl <- name_usage(key=nl$acceptedKey)$data
+                                if(nl$taxonomicStatus == "ACCEPTED"){
+                                  NAME <- nl$scientificName
+                                  STATUS <- nl$taxonomicStatus
+                                  RANK <- nl$rank
+                                  if(nl$rank == "SPECIES"){
+                                    SPEC_NAME <- nl$scientificName
+                                  } else {
+                                    if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                      if("speciesKey" %in% names(nl)){
+                                        nl <- name_usage(key=nl$speciesKey)$data
+                                        SPEC_NAME <- nl$scientificName
+                                      } else {
+                                        stop()
+                                      }
+                                    } else {
+                                      if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                        SPEC_NAME <- NA
+                                        NOTE <- "LIKELY HIGHER LEVEL TAXON"
+                                      } else {
+                                        stop()
+                                      }
+                                    }
+                                  }
+                                } else {
+                                  stop()
+                                }
+                              } else {
+                                stop()
+                              }
+                            }
+                          } else {
+                            if(nrow(nl) > 1){
+                              
+                              if(length(unique(nl$key)) == 1 & length(unique(nl$scientificName)) == 1){
+                                nl <- nl[1,]
+                                if(!nl$synonym){
+                                  if(nl$taxonomicStatus == "ACCEPTED"){
+                                    NAME <- nl$scientificName
+                                    STATUS <- nl$taxonomicStatus
+                                    RANK <- nl$rank
+                                    if(nl$rank == "SPECIES"){
+                                      SPEC_NAME <- nl$scientificName
+                                    } else {
+                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                        if("speciesKey" %in% names(nl)){
+                                          nl <- name_usage(key=nl$speciesKey)$data
+                                          SPEC_NAME <- nl$scientificName
+                                        } else {
+                                          stop()
+                                        }
+                                      } else {
+                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                          SPEC_NAME <- NA
+                                          NOTE <- "LIKELY HIGHER LEVEL TAXON"
+                                        } else {
+                                          stop()
+                                        }
+                                      }
+                                    }
+                                  } else {
+                                    stop()
+                                  }
+                                } else {
+                                  if("acceptedKey" %in% names(nl)){
+                                    nl <- name_usage(key=nl$acceptedKey)$data
+                                    if(nl$taxonomicStatus == "ACCEPTED"){
+                                      NAME <- nl$scientificName
+                                      STATUS <- nl$taxonomicStatus
+                                      RANK <- nl$rank
+                                      if(nl$rank == "SPECIES"){
+                                        SPEC_NAME <- nl$scientificName
+                                      } else {
+                                        if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                          if("speciesKey" %in% names(nl)){
+                                            nl <- name_usage(key=nl$speciesKey)$data
+                                            SPEC_NAME <- nl$scientificName
+                                          } else {
+                                            stop()
+                                          }
+                                        } else {
+                                          if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                            SPEC_NAME <- NA
+                                            NOTE <- "LIKELY HIGHER LEVEL TAXON"
+                                          } else {
+                                            stop()
+                                          }
+                                        }
+                                      }
+                                    } else {
+                                      stop()
+                                    }
+                                  } else {
+                                    stop()
+                                  }
+                                }
+                              } else {
+                                stop()
+                              }
+                            } else {
+                              stop()
+                            }
+                          }
                         }
                       } else {
                         success <- FALSE
@@ -1932,7 +2120,201 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 }
                               }
                             } else {
-                              stop()
+                              nl <- name_usage(key=nl$key)$data
+                              if(nrow(nl) == 1){
+                                if(!nl$synonym){
+                                  if(nl$taxonomicStatus == "ACCEPTED"){
+                                    NAME <- nl$scientificName
+                                    STATUS <- nl$taxonomicStatus
+                                    RANK <- nl$rank
+                                    NOTE <- "FUZZY MATCHING"
+                                    if(nl$rank == "SPECIES"){
+                                      SPEC_NAME <- nl$scientificName
+                                    } else {
+                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                        if("speciesKey" %in% names(nl)){
+                                          nl <- name_usage(key=nl$speciesKey)$data
+                                          SPEC_NAME <- nl$scientificName
+                                        } else {
+                                          stop()
+                                        }
+                                      } else {
+                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                          SPEC_NAME <- NA
+                                          NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
+                                        } else {
+                                          stop()
+                                        }
+                                      }
+                                    }
+                                  } else {
+                                    if("acceptedKey" %in% names(nl)){
+                                      nl <- name_usage(key=nl$acceptedKey)$data
+                                      if(nl$taxonomicStatus == "ACCEPTED"){
+                                        NAME <- nl$scientificName
+                                        STATUS <- nl$taxonomicStatus
+                                        RANK <- nl$rank
+                                        NOTE <- "FUZZY MATCHING"
+                                        if(nl$rank == "SPECIES"){
+                                          SPEC_NAME <- nl$scientificName
+                                        } else {
+                                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                            if("speciesKey" %in% names(nl)){
+                                              nl <- name_usage(key=nl$speciesKey)$data
+                                              SPEC_NAME <- nl$scientificName
+                                            } else {
+                                              stop()
+                                            }
+                                          } else {
+                                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                              SPEC_NAME <- NA
+                                              NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
+                                            } else {
+                                              stop()
+                                            }
+                                          }
+                                        }
+                                      } else {
+                                        stop()
+                                      }
+                                    } else {
+                                      if(nl$taxonomicStatus == "DOUBTFUL"){
+                                        NAME <- nl$scientificName
+                                        STATUS <- nl$taxonomicStatus
+                                        RANK <- nl$rank
+                                        NOTE <- "FUZZY MATCHING"
+                                        if(nl$rank == "SPECIES"){
+                                          SPEC_NAME <- nl$scientificName
+                                        } else {
+                                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                            if("speciesKey" %in% names(nl)){
+                                              nl <- name_usage(key=nl$speciesKey)$data
+                                              SPEC_NAME <- nl$scientificName
+                                            } else {
+                                              stop()
+                                            }
+                                          } else {
+                                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                              SPEC_NAME <- NA
+                                              NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
+                                            } else {
+                                              stop()
+                                            }
+                                          }
+                                        }
+                                      } else {
+                                        stop()
+                                      }
+                                    }
+                                  }
+                                } else {
+                                  if("acceptedKey" %in% names(nl)){
+                                    nl <- name_usage(key=nl$acceptedKey)$data
+                                    if(nl$taxonomicStatus == "ACCEPTED"){
+                                      NAME <- nl$scientificName
+                                      STATUS <- nl$taxonomicStatus
+                                      RANK <- nl$rank
+                                      NOTE <- "FUZZY MATCHING"
+                                      if(nl$rank == "SPECIES"){
+                                        SPEC_NAME <- nl$scientificName
+                                      } else {
+                                        if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                          if("speciesKey" %in% names(nl)){
+                                            nl <- name_usage(key=nl$speciesKey)$data
+                                            SPEC_NAME <- nl$scientificName
+                                          } else {
+                                            stop()
+                                          }
+                                        } else {
+                                          if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                            SPEC_NAME <- NA
+                                            NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
+                                          } else {
+                                            stop()
+                                          }
+                                        }
+                                      }
+                                    } else {
+                                      stop()
+                                    }
+                                  } else {
+                                    stop()
+                                  }
+                                }
+                              } else {
+                                if(nrow(nl) > 1){
+                                  
+                                  if(length(unique(nl$key)) == 1 & length(unique(nl$scientificName)) == 1){
+                                    nl <- nl[1,]
+                                    if(!nl$synonym){
+                                      if(nl$taxonomicStatus == "ACCEPTED"){
+                                        NAME <- nl$scientificName
+                                        STATUS <- nl$taxonomicStatus
+                                        RANK <- nl$rank
+                                        NOTE <- "FUZZY MATCHING"
+                                        if(nl$rank == "SPECIES"){
+                                          SPEC_NAME <- nl$scientificName
+                                        } else {
+                                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                            if("speciesKey" %in% names(nl)){
+                                              nl <- name_usage(key=nl$speciesKey)$data
+                                              SPEC_NAME <- nl$scientificName
+                                            } else {
+                                              stop()
+                                            }
+                                          } else {
+                                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                              SPEC_NAME <- NA
+                                              NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
+                                            } else {
+                                              stop()
+                                            }
+                                          }
+                                        }
+                                      } else {
+                                        stop()
+                                      }
+                                    } else {
+                                      if("acceptedKey" %in% names(nl)){
+                                        nl <- name_usage(key=nl$acceptedKey)$data
+                                        if(nl$taxonomicStatus == "ACCEPTED"){
+                                          NAME <- nl$scientificName
+                                          STATUS <- nl$taxonomicStatus
+                                          RANK <- nl$rank
+                                          NOTE <- "FUZZY MATCHING"
+                                          if(nl$rank == "SPECIES"){
+                                            SPEC_NAME <- nl$scientificName
+                                          } else {
+                                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                              if("speciesKey" %in% names(nl)){
+                                                nl <- name_usage(key=nl$speciesKey)$data
+                                                SPEC_NAME <- nl$scientificName
+                                              } else {
+                                                stop()
+                                              }
+                                            } else {
+                                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                                SPEC_NAME <- NA
+                                                NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
+                                              } else {
+                                                stop()
+                                              }
+                                            }
+                                          }
+                                        } else {
+                                          stop()
+                                        }
+                                      } else {
+                                        stop()
+                                      }
+                                    }
+                                  } else {
+                                    stop()
+                                  }
+                                } else {
+                                  stop()
+                                }
+                              }
                             }
                           } else {
                             success <- FALSE
