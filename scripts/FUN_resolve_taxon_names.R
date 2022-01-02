@@ -1,8 +1,8 @@
-# orig_name <- "Antennaria porsildii f. roseola Ekman"
-orig_name <- "  Madhuca beccarii"
-# dataset_key <- "9ca92552-f23a-41a8-a140-01abaa31c931"
+# orig_name <- "Betula nana"
+orig_name <- "Vaccinium myrtilus"
+# dataset_key <- "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
-# resolve_taxon_name(orig_name, dataset = dataset)
+# resolve_taxon_name(orig_name)
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(), maxtry = 2){
   
   if(is.null(dataset)){
@@ -39,7 +39,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
       
       # Try N times if failed first
       NAME <- NULL
-      NOTE <- NA
+      NOTE <- "OK"
       for(tryn in 1:maxtry){
         if(is.null(NAME)){
           try({
@@ -137,32 +137,227 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                 }
               }
             } else {
-              i <- gbif_parse(i)$canonicalnamecomplete
-              nl <- name_suggest(q=i, datasetKey = dataset_key)$data
-              if(nrow(nl) > 0){
-                stop()
+              if(nrow(nl) > 1){
+                if(gbif_parse(i)$canonicalname %in% nl$canonicalName){
+                  nl <- nl[nl$canonicalName == gbif_parse(i)$canonicalname & (!is.na(nl$canonicalName)),]
+                  if(nrow(nl) == 1){
+                    nl <- name_usage(key=nl$key)$data
+                    if(nrow(nl) > 1){nl <- nl[!duplicated(nl),]}
+                    
+                    if(nrow(nl) == 1){
+                      if(!nl$synonym){
+                        if(nl$taxonomicStatus == "ACCEPTED"){
+                          NAME <- nl$scientificName
+                          STATUS <- nl$taxonomicStatus
+                          if(nl$rank == "SPECIES"){
+                            SPEC_NAME <- nl$scientificName
+                          } else {
+                            if(nl$rank %in% c("FORM")){
+                              SPEC_NAME <- paste(strsplit(nl$scientificName, " ")[[1]][1:2], collapse = " ")
+                            } else {
+                              stop()
+                            }
+                          }
+                        } else {
+                          stop()
+                        }
+                      } else {
+                        if("acceptedKey" %in% names(nl)){
+                          nl <- name_usage(key=nl$acceptedKey)$data
+                          if(nl$taxonomicStatus == "ACCEPTED"){
+                            NAME <- nl$scientificName
+                            STATUS <- nl$taxonomicStatus
+                            if(nl$rank == "SPECIES"){
+                              SPEC_NAME <- nl$scientificName
+                            } else {
+                              stop()
+                            }
+                          } else {
+                            stop()
+                          }
+                        } else {
+                          stop()
+                        }
+                      }
+                    } else {
+                      stop()
+                    }
+                  } else {
+                    if(nrow(nl) > 1){
+                      success <- FALSE
+                      for(ikey in nl$key){
+                        nl1 <- name_usage(key=ikey)$data
+                        if(nl1$taxonomicStatus == "ACCEPTED"){
+                          success <- TRUE
+                          NAME <- nl1$scientificName
+                          STATUS <- nl1$taxonomicStatus
+                          if(nl1$rank == "SPECIES"){
+                            SPEC_NAME <- nl1$scientificName
+                          } else {
+                            stop()
+                          }
+                          break
+                        }
+                      }
+                      if(success == FALSE){
+                        for(ikey in nl$key){
+                          nl1 <- name_usage(key=ikey)$data
+                          if("acceptedKey" %in% names(nl1)){
+                            nl1 <- name_usage(key=nl1$acceptedKey)$data
+                            
+                            if(nl1$taxonomicStatus == "ACCEPTED"){
+                              success <- TRUE
+                              NAME <- nl1$scientificName
+                              STATUS <- nl1$taxonomicStatus
+                              if(nl1$rank == "SPECIES"){
+                                SPEC_NAME <- nl1$scientificName
+                              } else {
+                                stop()
+                              }
+                              break
+                            }
+                          }
+                        }
+                      }
+                      if(success == FALSE){
+                        NAME <- NA
+                        STATUS <- NA
+                      }
+                    } else {
+                      stop()
+                    }
+                  }
+                } else {
+                  stop()
+                }
               } else {
-                i <- gbif_parse(i)$canonicalname
+                i <- gbif_parse(i)$canonicalnamecomplete
                 nl <- name_suggest(q=i, datasetKey = dataset_key)$data
                 if(nrow(nl) > 0){
                   stop()
                 } else {
                   i <- gbif_parse(i)$canonicalname
-                  if(length(strsplit(i, " ")[[1]]) > 2){
-                    i <- paste(strsplit(i, " ")[[1]][1:2], collapse = " ")
-                    nl <- name_suggest(q=i, datasetKey = dataset_key)$data
-                    if(nrow(nl) > 0){
-                      if(nrow(nl) == 1){
-                        nl <- name_usage(key=nl$key)$data
+                  nl <- name_suggest(q=i, datasetKey = dataset_key)$data
+                  if(nrow(nl) > 0){
+                    stop()
+                  } else {
+                    i <- gbif_parse(i)$canonicalname
+                    if(length(strsplit(i, " ")[[1]]) > 2){
+                      i <- paste(strsplit(i, " ")[[1]][1:2], collapse = " ")
+                      nl <- name_suggest(q=i, datasetKey = dataset_key)$data
+                      if(nrow(nl) > 0){
+                        if(nrow(nl) == 1){
+                          nl <- name_usage(key=nl$key)$data
+                          if(!nl$synonym){
+                            if(nl$taxonomicStatus == "ACCEPTED"){
+                              NAME <- nl$scientificName
+                              STATUS <- nl$taxonomicStatus
+                              NOTE = "PARSED TO SPECIES"
+                              if(nl$rank == "SPECIES"){
+                                SPEC_NAME <- nl$scientificName
+                              } else {
+                                stop()
+                              }
+                            } else {
+                              stop()
+                            }
+                          } else {
+                            if("acceptedKey" %in% names(nl)){
+                              nl <- name_usage(key=nl$acceptedKey)$data
+                              if(nl$taxonomicStatus == "ACCEPTED"){
+                                NAME <- nl$scientificName
+                                STATUS <- nl$taxonomicStatus
+                                NOTE = "PARSED TO SPECIES"
+                                if(nl$rank == "SPECIES"){
+                                  SPEC_NAME <- nl$scientificName
+                                } else {
+                                  stop()
+                                }
+                              } else {
+                                stop()
+                              }
+                            } else {
+                              stop()
+                            }
+                          }
+                        } else {
+                          stop()
+                        }
+                      } else {
+                        stop()
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            if(is.null(NAME)){
+              i <- orig_name
+              tp <- TPL(i, diffchar = 1, max.distance = 1)
+              if(tp$Typo & tp$Plant.Name.Index){
+                i <- gbif_parse(paste0(c(tp$New.Genus, tp$New.Hybrid.marker, tp$New.Species, tp$New.Infraspecific.rank, tp$New.Infraspecific, tp$New.Authority), collapse = " "))$canonicalnamecomplete
+                
+                nl <- name_suggest(q=i, datasetKey = dataset_key)$data
+                
+                if(nrow(nl) == 1){
+                  nl <- name_usage(key=nl$key)$data
+                  if(nrow(nl) > 1){nl <- nl[!duplicated(nl),]}
+                  
+                  if(nrow(nl) == 1){
+                    if(!nl$synonym){
+                      if(nl$taxonomicStatus == "ACCEPTED"){
+                        NAME <- nl$scientificName
+                        STATUS <- nl$taxonomicStatus
+                        NOTE <- "FUZZY MATCHING"
+                        if(nl$rank == "SPECIES"){
+                          SPEC_NAME <- nl$scientificName
+                        } else {
+                          if(nl$rank %in% c("FORM")){
+                            SPEC_NAME <- paste(strsplit(nl$scientificName, " ")[[1]][1:2], collapse = " ")
+                          } else {
+                            stop()
+                          }
+                        }
+                      } else {
+                        stop()
+                      }
+                    } else {
+                      if("acceptedKey" %in% names(nl)){
+                        nl <- name_usage(key=nl$acceptedKey)$data
+                        if(nl$taxonomicStatus == "ACCEPTED"){
+                          NAME <- nl$scientificName
+                          STATUS <- nl$taxonomicStatus
+                          NOTE <- "FUZZY MATCHING"
+                          if(nl$rank == "SPECIES"){
+                            SPEC_NAME <- nl$scientificName
+                          } else {
+                            stop()
+                          }
+                        } else {
+                          stop()
+                        }
+                      } else {
+                        stop()
+                      }
+                    }
+                  } else {
+                    if(nrow(nl) > 1){
+                      
+                      if(length(unique(nl$key)) == 1 & length(unique(nl$scientificName)) == 1){
+                        nl <- nl[1,]
                         if(!nl$synonym){
                           if(nl$taxonomicStatus == "ACCEPTED"){
                             NAME <- nl$scientificName
                             STATUS <- nl$taxonomicStatus
-                            NOTE = "PARSED TO SPECIES"
+                            NOTE <- "FUZZY MATCHING"
                             if(nl$rank == "SPECIES"){
                               SPEC_NAME <- nl$scientificName
                             } else {
-                              stop()
+                              if(nl$rank %in% c("FORM")){
+                                SPEC_NAME <- paste(strsplit(nl$scientificName, " ")[[1]][1:2], collapse = " ")
+                              } else {
+                                stop()
+                              }
                             }
                           } else {
                             stop()
@@ -173,11 +368,15 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(nl$taxonomicStatus == "ACCEPTED"){
                               NAME <- nl$scientificName
                               STATUS <- nl$taxonomicStatus
-                              NOTE = "PARSED TO SPECIES"
+                              NOTE <- "FUZZY MATCHING"
                               if(nl$rank == "SPECIES"){
                                 SPEC_NAME <- nl$scientificName
                               } else {
-                                stop()
+                                if(nl$rank %in% c("FORM")){
+                                  SPEC_NAME <- paste(strsplit(nl$scientificName, " ")[[1]][1:2], collapse = " ")
+                                } else {
+                                  stop()
+                                }
                               }
                             } else {
                               stop()
@@ -193,14 +392,171 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                       stop()
                     }
                   }
+                } else {
+                  if(nrow(nl) > 1){
+                    if(gbif_parse(i)$canonicalname %in% nl$canonicalName){
+                      nl <- nl[nl$canonicalName == gbif_parse(i)$canonicalname & (!is.na(nl$canonicalName)),]
+                      if(nrow(nl) == 1){
+                        nl <- name_usage(key=nl$key)$data
+                        if(nrow(nl) > 1){nl <- nl[!duplicated(nl),]}
+                        
+                        if(nrow(nl) == 1){
+                          if(!nl$synonym){
+                            if(nl$taxonomicStatus == "ACCEPTED"){
+                              NAME <- nl$scientificName
+                              STATUS <- nl$taxonomicStatus
+                              NOTE <- "FUZZY MATCHING"
+                              if(nl$rank == "SPECIES"){
+                                SPEC_NAME <- nl$scientificName
+                              } else {
+                                if(nl$rank %in% c("FORM")){
+                                  SPEC_NAME <- paste(strsplit(nl$scientificName, " ")[[1]][1:2], collapse = " ")
+                                } else {
+                                  stop()
+                                }
+                              }
+                            } else {
+                              stop()
+                            }
+                          } else {
+                            if("acceptedKey" %in% names(nl)){
+                              nl <- name_usage(key=nl$acceptedKey)$data
+                              if(nl$taxonomicStatus == "ACCEPTED"){
+                                NAME <- nl$scientificName
+                                STATUS <- nl$taxonomicStatus
+                                NOTE <- "FUZZY MATCHING"
+                                if(nl$rank == "SPECIES"){
+                                  SPEC_NAME <- nl$scientificName
+                                } else {
+                                  stop()
+                                }
+                              } else {
+                                stop()
+                              }
+                            } else {
+                              stop()
+                            }
+                          }
+                        } else {
+                          stop()
+                        }
+                      } else {
+                        if(nrow(nl) > 1){
+                          success <- FALSE
+                          for(ikey in nl$key){
+                            nl1 <- name_usage(key=ikey)$data
+                            if(nl1$taxonomicStatus == "ACCEPTED"){
+                              success <- TRUE
+                              NAME <- nl1$scientificName
+                              STATUS <- nl1$taxonomicStatus
+                              NOTE <- "FUZZY MATCHING"
+                              if(nl1$rank == "SPECIES"){
+                                SPEC_NAME <- nl1$scientificName
+                              } else {
+                                stop()
+                              }
+                              break
+                            }
+                          }
+                          if(success == FALSE){
+                            for(ikey in nl$key){
+                              nl1 <- name_usage(key=ikey)$data
+                              if("acceptedKey" %in% names(nl1)){
+                                nl1 <- name_usage(key=nl1$acceptedKey)$data
+                                
+                                if(nl1$taxonomicStatus == "ACCEPTED"){
+                                  success <- TRUE
+                                  NAME <- nl1$scientificName
+                                  STATUS <- nl1$taxonomicStatus
+                                  NOTE <- "FUZZY MATCHING"
+                                  if(nl1$rank == "SPECIES"){
+                                    SPEC_NAME <- nl1$scientificName
+                                  } else {
+                                    stop()
+                                  }
+                                  break
+                                }
+                              }
+                            }
+                          }
+                          if(success == FALSE){
+                            NAME <- NA
+                            STATUS <- NA
+                          }
+                        } else {
+                          stop()
+                        }
+                      }
+                    } else {
+                      stop()
+                    }
+                  } else {
+                    i <- gbif_parse(i)$canonicalnamecomplete
+                    nl <- name_suggest(q=i, datasetKey = dataset_key)$data
+                    if(nrow(nl) > 0){
+                      stop()
+                    } else {
+                      i <- gbif_parse(i)$canonicalname
+                      nl <- name_suggest(q=i, datasetKey = dataset_key)$data
+                      if(nrow(nl) > 0){
+                        stop()
+                      } else {
+                        i <- gbif_parse(i)$canonicalname
+                        if(length(strsplit(i, " ")[[1]]) > 2){
+                          i <- paste(strsplit(i, " ")[[1]][1:2], collapse = " ")
+                          nl <- name_suggest(q=i, datasetKey = dataset_key)$data
+                          if(nrow(nl) > 0){
+                            if(nrow(nl) == 1){
+                              nl <- name_usage(key=nl$key)$data
+                              if(!nl$synonym){
+                                if(nl$taxonomicStatus == "ACCEPTED"){
+                                  NAME <- nl$scientificName
+                                  STATUS <- nl$taxonomicStatus
+                                  NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
+                                  if(nl$rank == "SPECIES"){
+                                    SPEC_NAME <- nl$scientificName
+                                  } else {
+                                    stop()
+                                  }
+                                } else {
+                                  stop()
+                                }
+                              } else {
+                                if("acceptedKey" %in% names(nl)){
+                                  nl <- name_usage(key=nl$acceptedKey)$data
+                                  if(nl$taxonomicStatus == "ACCEPTED"){
+                                    NAME <- nl$scientificName
+                                    STATUS <- nl$taxonomicStatus
+                                    NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
+                                    if(nl$rank == "SPECIES"){
+                                      SPEC_NAME <- nl$scientificName
+                                    } else {
+                                      stop()
+                                    }
+                                  } else {
+                                    stop()
+                                  }
+                                } else {
+                                  stop()
+                                }
+                              }
+                            } else {
+                              stop()
+                            }
+                          } else {
+                            stop()
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
-              }
-            }
-            if(is.null(NAME)){
-              i <- orig_name
-              tp <- TPL(i, diffchar = 2, max.distance = 2)
-              if(tp$Typo){
-                NAME <- "FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU"
+                
+              } else {
+                NAME <- NA
+                STATUS <- NA
+                NOTE = "NOT FOUND"
+                SPEC_NAME <- NA
               }
             }
           },silent=TRUE)
@@ -221,6 +577,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
         
         if(is.na(NAME)){
           parsed <- NA
+          spec_parsed <- NA
         } else {
           parsed <- parsenames(NAME)$canonicalnamewithmarker
           spec_parsed <- paste(strsplit(parsenames(NAME)$canonicalname, " ")[[1]][1:2], collapse = " ")
