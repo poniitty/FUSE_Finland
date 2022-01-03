@@ -1,4 +1,4 @@
-# orig_name <- "Betula nana L."
+# orig_name <- "LYCOPODIUM sp."
 # orig_name <- "Vaccnium myrtllus L."
 # dataset_key <- "bae5856f-da10-4333-90a0-5a2135361b30"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
@@ -72,11 +72,15 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
             i <- gsub("_", " ", i, perl = TRUE)
             parts <- strsplit(i, " ")[[1]]
             parts[1] <- gsub("[^\\p{L} ]", "", parts[1], perl = TRUE)
-            i <- paste(parts, collapse = " ")
-            
-            if(parts[2] %in% c("sp","sp.","spp","ssp","spp.","ssp.","spec.","species")){
-              i <- parts[1]
+            parts[1] <- paste0(toupper(substr(parts[1], 1, 1)), tolower(substr(parts[1], 2, 100)))
+            if(length(parts) > 1){
+              parts[2] <- tolower(parts[2])
+              i <- paste(parts, collapse = " ")
+              if(parts[2] %in% c("sp","sp.","spp","ssp","spp.","ssp.","spec.","species")){
+                i <- parts[1]
+              }
             }
+            
             
             nl <- name_suggest(q=i, datasetKey = dataset_key)$data
             
@@ -1924,10 +1928,13 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
               i <- gsub("_", " ", i, perl = TRUE)
               parts <- strsplit(i, " ")[[1]]
               parts[1] <- gsub("[^\\p{L} ]", "", parts[1], perl = TRUE)
-              i <- paste(parts, collapse = " ")
-              
-              if(parts[2] %in% c("sp","sp.","spp","ssp","spp.","ssp.","spec.","species")){
-                i <- parts[1]
+              parts[1] <- paste0(toupper(substr(parts[1], 1, 1)), tolower(substr(parts[1], 2, 100)))
+              if(length(parts) > 1){
+                parts[2] <- tolower(parts[2])
+                i <- paste(parts, collapse = " ")
+                if(parts[2] %in% c("sp","sp.","spp","ssp","spp.","ssp.","spec.","species")){
+                  i <- parts[1]
+                }
               }
               
               tp <- TPL(i, diffchar = 1, max.distance = 1)
