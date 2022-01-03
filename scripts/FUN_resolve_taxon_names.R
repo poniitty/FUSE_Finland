@@ -1,4 +1,4 @@
-# orig_name <- "Viola A-robinsoniana"
+# orig_name <- "Salix viminalis x cinerea x aurita = S. x hirtei Strähler"
 # orig_name <- "Vaccnium myrtllus L."
 # dataset_key <- "bae5856f-da10-4333-90a0-5a2135361b30"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
@@ -61,6 +61,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
             }, silent = T)
             
             i <- gsub(" A-"," ×",i)
+            i <- gsub(" x "," × ",i)
             i <- gsub("ë","e",i)
             i <- gsub("^ ","",i)
             i <- gsub("^ ","",i)
@@ -1388,6 +1389,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
               }, silent = T)
               
               i <- gsub(" A-"," ×",i)
+              i <- gsub(" x "," × ",i)
               i <- gsub("ë","e",i)
               i <- gsub("^ ","",i)
               i <- gsub("^ ","",i)
@@ -2690,7 +2692,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                    canonical_name = "FAILED",
                    canonical_species_name = "FAILED",
                    dataset = names(which(tested_keys == dataset_key)),
-                   note = ifelse(grepl("×",orig_name),"HYBRID! RESOLVING MIGHT BE UNRELIABLE","FAILED"))
+                   note = ifelse(grepl("×",orig_name) | grepl(" x ",orig_name) ,"HYBRID! RESOLVING FAILED","FAILED"))
       } else {
         
         if(grepl("Incertae sedis", NAME, ignore.case = T)){
