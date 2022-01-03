@@ -1,6 +1,6 @@
-# orig_name <- "Ranunculus baeckii (Fagerstr. & G. Kvist) Ericsson"
+# orig_name <- "Cephalozia bicuspidata"
 # orig_name <- "Vaccnium myrtllus L."
-# dataset_key <- "d9a4eedb-e985-4456-ad46-3df8472e00e8"
+# dataset_key <- "bae5856f-da10-4333-90a0-5a2135361b30"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
 # resolve_taxon_name(orig_name)
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(), maxtry = 2){
@@ -2632,7 +2632,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                    note = ifelse(grepl("×",orig_name),"HYBRID! RESOLVING MIGHT BE UNRELIABLE","FAILED"))
       } else {
         
-        if(is.na(NAME)){
+        e <- try(if(is.na(NAME)){
           parsed <- NA
           spec_parsed <- NA
         } else {
@@ -2651,18 +2651,31 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
               spec_parsed <- NA
             }
           }
-        }
+        })
         
-        resolved_temp2 <- data.frame(orig_name = orig_name,
-                   used_name = i,
-                   found_name = NAME,
-                   taxon_status = STATUS,
-                   taxon_rank = RANK,
-                   species_name = SPEC_NAME,
-                   canonical_name = parsed,
-                   canonical_species_name = spec_parsed,
-                   dataset = names(which(tested_keys == dataset_key)),
-                   note = NOTE)
+        if(class(e) == "try-error"){
+          resolved_temp2 <- data.frame(orig_name = orig_name,
+                                       used_name = ifelse(is.null(i), orig_name, i),
+                                       found_name = "FAILED",
+                                       taxon_status = "FAILED",
+                                       taxon_rank = "FAILED",
+                                       species_name = "FAILED",
+                                       canonical_name = "FAILED",
+                                       canonical_species_name = "FAILED",
+                                       dataset = names(which(tested_keys == dataset_key)),
+                                       note = "FAILED! PROPABLE NETWORK ERROR")
+        } else {
+          resolved_temp2 <- data.frame(orig_name = orig_name,
+                                       used_name = i,
+                                       found_name = NAME,
+                                       taxon_status = STATUS,
+                                       taxon_rank = RANK,
+                                       species_name = SPEC_NAME,
+                                       canonical_name = parsed,
+                                       canonical_species_name = spec_parsed,
+                                       dataset = names(which(tested_keys == dataset_key)),
+                                       note = NOTE)
+        }
       }
       
       resolved_temp <- rbind.data.frame(resolved_temp, resolved_temp2)
