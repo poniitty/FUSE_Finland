@@ -1,6 +1,6 @@
-# orig_name <- "Betula sp2"
+# orig_name <- "Rubus obtruncatus"
 # orig_name <- "Vaccnium myrtllus L."
-# dataset_key <- "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"
+# dataset_key <- "f382f0ce-323a-4091-bb9f-add557f3a9a2"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
 # resolve_taxon_name(orig_name)
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(), maxtry = 2){
@@ -191,7 +191,32 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         }
                       }
                     } else {
-                      stop()
+                      if(nl$taxonomicStatus == "DOUBTFUL"){
+                        NAME <- nl$scientificName
+                        STATUS <- nl$taxonomicStatus
+                        RANK <- nl$rank
+                        if(nl$rank == "SPECIES"){
+                          SPEC_NAME <- nl$scientificName
+                        } else {
+                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                            if("speciesKey" %in% names(nl)){
+                              nl <- name_usage(key=nl$speciesKey)$data
+                              SPEC_NAME <- nl$scientificName
+                            } else {
+                              stop()
+                            }
+                          } else {
+                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                              SPEC_NAME <- NA
+                              NOTE <- "LIKELY HIGHER LEVEL TAXON"
+                            } else {
+                              stop()
+                            }
+                          }
+                        }
+                      } else {
+                        stop()
+                      }
                     }
                   } else {
                     stop()
@@ -1469,7 +1494,33 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             }
                           }
                         } else {
-                          stop()
+                          if(nl$taxonomicStatus == "DOUBTFUL"){
+                            NAME <- nl$scientificName
+                            STATUS <- nl$taxonomicStatus
+                            RANK <- nl$rank
+                            NOTE <- "FUZZY MATCHING"
+                            if(nl$rank == "SPECIES"){
+                              SPEC_NAME <- nl$scientificName
+                            } else {
+                              if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                if("speciesKey" %in% names(nl)){
+                                  nl <- name_usage(key=nl$speciesKey)$data
+                                  SPEC_NAME <- nl$scientificName
+                                } else {
+                                  stop()
+                                }
+                              } else {
+                                if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                  SPEC_NAME <- NA
+                                  NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
+                                } else {
+                                  stop()
+                                }
+                              }
+                            }
+                          } else {
+                            stop()
+                          }
                         }
                       } else {
                         stop()
@@ -2640,49 +2691,62 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                    note = ifelse(grepl("×",orig_name),"HYBRID! RESOLVING MIGHT BE UNRELIABLE","FAILED"))
       } else {
         
-        e <- try(if(is.na(NAME)){
-          parsed <- NA
-          spec_parsed <- NA
-        } else {
-          if(NOTE == "LIKELY HIGHER LEVEL TAXON"){
-            parsed <- parsenames(NAME)$canonicalnamewithmarker
-            spec_parsed <- NA
-          } else {
-            parsed <- parsenames(NAME)$canonicalnamewithmarker
-            spec_parsed <- try(paste(strsplit(parsenames(NAME)$canonicalname, " ")[[1]][1:2], collapse = " "), silent = T)
-            if(is.null(parsed) & parsenames(NAME)$type == "HYBRID"){
-              parsed <- NA
-              spec_parsed <- NA
-              NOTE <- "HYBRID! RESOLVING MIGHT BE UNRELIABLE"
-            }
-            if(class(spec_parsed) == "try-error"){
-              spec_parsed <- NA
-            }
-          }
-        })
-        
-        if(class(e) == "try-error"){
+        if(grepl("Incertae sedis", NAME, ignore.case = T)){
           resolved_temp2 <- data.frame(orig_name = orig_name,
                                        used_name = ifelse(is.null(i), orig_name, i),
-                                       found_name = "FAILED",
-                                       taxon_status = "FAILED",
-                                       taxon_rank = "FAILED",
-                                       species_name = "FAILED",
-                                       canonical_name = "FAILED",
-                                       canonical_species_name = "FAILED",
+                                       found_name = NA,
+                                       taxon_status = NA,
+                                       taxon_rank = NA,
+                                       species_name = NA,
+                                       canonical_name = NA,
+                                       canonical_species_name = NA,
                                        dataset = names(which(tested_keys == dataset_key)),
-                                       note = "FAILED! PROPABLE NETWORK ERROR")
+                                       note = "INCERTEA SEDIS! HIGHLY UNCERTAIN TAXON")
         } else {
-          resolved_temp2 <- data.frame(orig_name = orig_name,
-                                       used_name = i,
-                                       found_name = NAME,
-                                       taxon_status = STATUS,
-                                       taxon_rank = RANK,
-                                       species_name = SPEC_NAME,
-                                       canonical_name = parsed,
-                                       canonical_species_name = spec_parsed,
-                                       dataset = names(which(tested_keys == dataset_key)),
-                                       note = NOTE)
+          e <- try(if(is.na(NAME)){
+            parsed <- NA
+            spec_parsed <- NA
+          } else {
+            if(NOTE == "LIKELY HIGHER LEVEL TAXON"){
+              parsed <- parsenames(NAME)$canonicalnamewithmarker
+              spec_parsed <- NA
+            } else {
+              parsed <- parsenames(NAME)$canonicalnamewithmarker
+              spec_parsed <- try(paste(strsplit(parsenames(NAME)$canonicalname, " ")[[1]][1:2], collapse = " "), silent = T)
+              if(is.null(parsed) & parsenames(NAME)$type == "HYBRID"){
+                parsed <- NA
+                spec_parsed <- NA
+                NOTE <- "HYBRID! RESOLVING MIGHT BE UNRELIABLE"
+              }
+              if(class(spec_parsed) == "try-error"){
+                spec_parsed <- NA
+              }
+            }
+          })
+          
+          if(class(e) == "try-error"){
+            resolved_temp2 <- data.frame(orig_name = orig_name,
+                                         used_name = ifelse(is.null(i), orig_name, i),
+                                         found_name = "FAILED",
+                                         taxon_status = "FAILED",
+                                         taxon_rank = "FAILED",
+                                         species_name = "FAILED",
+                                         canonical_name = "FAILED",
+                                         canonical_species_name = "FAILED",
+                                         dataset = names(which(tested_keys == dataset_key)),
+                                         note = "FAILED! PROPABLE NETWORK ERROR")
+          } else {
+            resolved_temp2 <- data.frame(orig_name = orig_name,
+                                         used_name = i,
+                                         found_name = NAME,
+                                         taxon_status = STATUS,
+                                         taxon_rank = RANK,
+                                         species_name = SPEC_NAME,
+                                         canonical_name = parsed,
+                                         canonical_species_name = spec_parsed,
+                                         dataset = names(which(tested_keys == dataset_key)),
+                                         note = NOTE)
+          }
         }
       }
       
