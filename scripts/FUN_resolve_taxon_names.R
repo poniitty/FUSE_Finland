@@ -1,8 +1,9 @@
-# orig_name <- "Evodia simplicifolia Ridley"
+# orig_name <- "Ocimum basilicum pilosum"
 # orig_name <- "Vaccnium myrtllus L."
-# dataset_key <- "d9a4eedb-e985-4456-ad46-3df8472e00e8"
+# dataset_key <- "bae5856f-da10-4333-90a0-5a2135361b30"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
 # resolve_taxon_name(orig_name)
+# resolve_taxon_name(orig_name, dataset = "bae5856f-da10-4333-90a0-5a2135361b30")
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(), maxtry = 2){
   
   if(is.null(dataset)){
@@ -36,7 +37,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
     
     resolved_temp <- data.frame() # To store names
     for(dataset_key in dataset){
-      
+      # print(dataset_key)
       # Try N times if failed first
       NAME <- NULL
       NOTE <- "OK"
@@ -2791,6 +2792,11 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                          dataset = names(which(tested_keys == dataset_key)),
                                          note = "FAILED! PROPABLE NETWORK ERROR")
           } else {
+            
+            if(RANK == "UNRANKED"){
+              SPEC_NAME <- NA
+            }
+            
             resolved_temp2 <- data.frame(orig_name = orig_name,
                                          used_name = i,
                                          found_name = NAME,
