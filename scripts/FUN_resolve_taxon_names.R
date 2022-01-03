@@ -1,4 +1,4 @@
-# orig_name <- "Cerastium nigrescens (H. C. Watson) Edmondston ex H. C. Watson"
+# orig_name <- "Taraxacum carpaticum"
 # orig_name <- "Vaccnium myrtllus L."
 # dataset_key <- "bae5856f-da10-4333-90a0-5a2135361b30"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
@@ -93,7 +93,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                     if(nl$rank == "SPECIES"){
                       SPEC_NAME <- nl$scientificName
                     } else {
-                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                         if("speciesKey" %in% names(nl)){
                           nl <- name_usage(key=nl$speciesKey)$data
                           SPEC_NAME <- nl$scientificName
@@ -119,7 +119,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         if(nl$rank == "SPECIES"){
                           SPEC_NAME <- nl$scientificName
                         } else {
-                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                             if("speciesKey" %in% names(nl)){
                               nl <- name_usage(key=nl$speciesKey)$data
                               SPEC_NAME <- nl$scientificName
@@ -146,7 +146,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         if(nl$rank == "SPECIES"){
                           SPEC_NAME <- nl$scientificName
                         } else {
-                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                             if("speciesKey" %in% names(nl)){
                               nl <- name_usage(key=nl$speciesKey)$data
                               SPEC_NAME <- nl$scientificName
@@ -177,7 +177,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                       if(nl$rank == "SPECIES"){
                         SPEC_NAME <- nl$scientificName
                       } else {
-                        if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                        if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                           if("speciesKey" %in% names(nl)){
                             nl <- name_usage(key=nl$speciesKey)$data
                             SPEC_NAME <- nl$scientificName
@@ -201,7 +201,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         if(nl$rank == "SPECIES"){
                           SPEC_NAME <- nl$scientificName
                         } else {
-                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                             if("speciesKey" %in% names(nl)){
                               nl <- name_usage(key=nl$speciesKey)$data
                               SPEC_NAME <- nl$scientificName
@@ -238,7 +238,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         if(nl$rank == "SPECIES"){
                           SPEC_NAME <- nl$scientificName
                         } else {
-                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                             if("speciesKey" %in% names(nl)){
                               nl <- name_usage(key=nl$speciesKey)$data
                               SPEC_NAME <- nl$scientificName
@@ -267,7 +267,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(nl$rank == "SPECIES"){
                             SPEC_NAME <- nl$scientificName
                           } else {
-                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                               if("speciesKey" %in% names(nl)){
                                 nl <- name_usage(key=nl$speciesKey)$data
                                 SPEC_NAME <- nl$scientificName
@@ -314,7 +314,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(nl$rank == "SPECIES"){
                             SPEC_NAME <- nl$scientificName
                           } else {
-                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                               if("speciesKey" %in% names(nl)){
                                 nl <- name_usage(key=nl$speciesKey)$data
                                 SPEC_NAME <- nl$scientificName
@@ -343,7 +343,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(nl$rank == "SPECIES"){
                               SPEC_NAME <- nl$scientificName
                             } else {
-                              if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                              if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                 if("speciesKey" %in% names(nl)){
                                   nl <- name_usage(key=nl$speciesKey)$data
                                   SPEC_NAME <- nl$scientificName
@@ -382,7 +382,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(nl1$rank == "SPECIES"){
                             SPEC_NAME <- nl1$scientificName
                           } else {
-                            if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                            if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                               if("speciesKey" %in% names(nl1)){
                                 nl1 <- name_usage(key=nl1$speciesKey)$data
                                 SPEC_NAME <- nl1$scientificName
@@ -415,7 +415,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(nl1$rank == "SPECIES"){
                                 SPEC_NAME <- nl1$scientificName
                               } else {
-                                if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                   if("speciesKey" %in% names(nl1)){
                                     nl1 <- name_usage(key=nl1$speciesKey)$data
                                     SPEC_NAME <- nl1$scientificName
@@ -471,7 +471,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(nl$rank == "SPECIES"){
                             SPEC_NAME <- nl$scientificName
                           } else {
-                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                               if("speciesKey" %in% names(nl)){
                                 nl <- name_usage(key=nl$speciesKey)$data
                                 SPEC_NAME <- nl$scientificName
@@ -497,7 +497,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(nl$rank == "SPECIES"){
                                 SPEC_NAME <- nl$scientificName
                               } else {
-                                if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                   if("speciesKey" %in% names(nl)){
                                     nl <- name_usage(key=nl$speciesKey)$data
                                     SPEC_NAME <- nl$scientificName
@@ -524,7 +524,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(nl$rank == "SPECIES"){
                                 SPEC_NAME <- nl$scientificName
                               } else {
-                                if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                   if("speciesKey" %in% names(nl)){
                                     nl <- name_usage(key=nl$speciesKey)$data
                                     SPEC_NAME <- nl$scientificName
@@ -555,7 +555,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(nl$rank == "SPECIES"){
                               SPEC_NAME <- nl$scientificName
                             } else {
-                              if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                              if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                 if("speciesKey" %in% names(nl)){
                                   nl <- name_usage(key=nl$speciesKey)$data
                                   SPEC_NAME <- nl$scientificName
@@ -591,7 +591,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(nl$rank == "SPECIES"){
                                 SPEC_NAME <- nl$scientificName
                               } else {
-                                if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                   if("speciesKey" %in% names(nl)){
                                     nl <- name_usage(key=nl$speciesKey)$data
                                     SPEC_NAME <- nl$scientificName
@@ -620,7 +620,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 if(nl$rank == "SPECIES"){
                                   SPEC_NAME <- nl$scientificName
                                 } else {
-                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                     if("speciesKey" %in% names(nl)){
                                       nl <- name_usage(key=nl$speciesKey)$data
                                       SPEC_NAME <- nl$scientificName
@@ -669,7 +669,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(nl$rank == "SPECIES"){
                             SPEC_NAME <- nl$scientificName
                           } else {
-                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                               if("speciesKey" %in% names(nl)){
                                 nl <- name_usage(key=nl$speciesKey)$data
                                 SPEC_NAME <- nl$scientificName
@@ -698,7 +698,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(nl$rank == "SPECIES"){
                               SPEC_NAME <- nl$scientificName
                             } else {
-                              if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                              if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                 if("speciesKey" %in% names(nl)){
                                   nl <- name_usage(key=nl$speciesKey)$data
                                   SPEC_NAME <- nl$scientificName
@@ -737,7 +737,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(nl1$rank == "SPECIES"){
                             SPEC_NAME <- nl1$scientificName
                           } else {
-                            if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                            if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                               if("speciesKey" %in% names(nl1)){
                                 nl1 <- name_usage(key=nl1$speciesKey)$data
                                 SPEC_NAME <- nl1$scientificName
@@ -770,7 +770,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(nl1$rank == "SPECIES"){
                                 SPEC_NAME <- nl1$scientificName
                               } else {
-                                if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                   if("speciesKey" %in% names(nl1)){
                                     nl1 <- name_usage(key=nl1$speciesKey)$data
                                     SPEC_NAME <- nl1$scientificName
@@ -833,7 +833,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 if(nl$rank == "SPECIES"){
                                   SPEC_NAME <- nl$scientificName
                                 } else {
-                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                     if("speciesKey" %in% names(nl)){
                                       nl <- name_usage(key=nl$speciesKey)$data
                                       SPEC_NAME <- nl$scientificName
@@ -871,7 +871,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 if(nl$rank == "SPECIES"){
                                   SPEC_NAME <- nl$scientificName
                                 } else {
-                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                     if("speciesKey" %in% names(nl)){
                                       nl <- name_usage(key=nl$speciesKey)$data
                                       SPEC_NAME <- nl$scientificName
@@ -897,7 +897,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     if(nl$rank == "SPECIES"){
                                       SPEC_NAME <- nl$scientificName
                                     } else {
-                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                         if("speciesKey" %in% names(nl)){
                                           nl <- name_usage(key=nl$speciesKey)$data
                                           SPEC_NAME <- nl$scientificName
@@ -924,7 +924,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     if(nl$rank == "SPECIES"){
                                       SPEC_NAME <- nl$scientificName
                                     } else {
-                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                         if("speciesKey" %in% names(nl)){
                                           nl <- name_usage(key=nl$speciesKey)$data
                                           SPEC_NAME <- nl$scientificName
@@ -955,7 +955,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   if(nl$rank == "SPECIES"){
                                     SPEC_NAME <- nl$scientificName
                                   } else {
-                                    if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                    if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                       if("speciesKey" %in% names(nl)){
                                         nl <- name_usage(key=nl$speciesKey)$data
                                         SPEC_NAME <- nl$scientificName
@@ -979,7 +979,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     if(nl$rank == "SPECIES"){
                                       SPEC_NAME <- nl$scientificName
                                     } else {
-                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                         if("speciesKey" %in% names(nl)){
                                           nl <- name_usage(key=nl$speciesKey)$data
                                           SPEC_NAME <- nl$scientificName
@@ -1016,7 +1016,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     if(nl$rank == "SPECIES"){
                                       SPEC_NAME <- nl$scientificName
                                     } else {
-                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                         if("speciesKey" %in% names(nl)){
                                           nl <- name_usage(key=nl$speciesKey)$data
                                           SPEC_NAME <- nl$scientificName
@@ -1045,7 +1045,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       if(nl$rank == "SPECIES"){
                                         SPEC_NAME <- nl$scientificName
                                       } else {
-                                        if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                        if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                           if("speciesKey" %in% names(nl)){
                                             nl <- name_usage(key=nl$speciesKey)$data
                                             SPEC_NAME <- nl$scientificName
@@ -1088,7 +1088,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(nl1$rank == "SPECIES"){
                               SPEC_NAME <- nl1$scientificName
                             } else {
-                              if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                              if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                 if("speciesKey" %in% names(nl1)){
                                   nl1 <- name_usage(key=nl1$speciesKey)$data
                                   SPEC_NAME <- nl1$scientificName
@@ -1121,7 +1121,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 if(nl1$rank == "SPECIES"){
                                   SPEC_NAME <- nl1$scientificName
                                 } else {
-                                  if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                  if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                     if("speciesKey" %in% names(nl1)){
                                       nl1 <- name_usage(key=nl1$speciesKey)$data
                                       SPEC_NAME <- nl1$scientificName
@@ -1167,7 +1167,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 if(nl$rank == "SPECIES"){
                                   SPEC_NAME <- nl$scientificName
                                 } else {
-                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                     if("speciesKey" %in% names(nl)){
                                       nl <- name_usage(key=nl$speciesKey)$data
                                       SPEC_NAME <- nl$scientificName
@@ -1197,7 +1197,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   if(nl$rank == "SPECIES"){
                                     SPEC_NAME <- nl$scientificName
                                   } else {
-                                    if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                    if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                       if("speciesKey" %in% names(nl)){
                                         nl <- name_usage(key=nl$speciesKey)$data
                                         SPEC_NAME <- nl$scientificName
@@ -1237,7 +1237,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       if(nl$rank == "SPECIES"){
                                         SPEC_NAME <- nl$scientificName
                                       } else {
-                                        if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                        if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                           if("speciesKey" %in% names(nl)){
                                             nl <- name_usage(key=nl$speciesKey)$data
                                             SPEC_NAME <- nl$scientificName
@@ -1267,7 +1267,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         if(nl$rank == "SPECIES"){
                                           SPEC_NAME <- nl$scientificName
                                         } else {
-                                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                             if("speciesKey" %in% names(nl)){
                                               nl <- name_usage(key=nl$speciesKey)$data
                                               SPEC_NAME <- nl$scientificName
@@ -1307,7 +1307,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       if(nl1$rank == "SPECIES"){
                                         SPEC_NAME <- nl1$scientificName
                                       } else {
-                                        if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                        if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                           if("speciesKey" %in% names(nl1)){
                                             nl1 <- name_usage(key=nl1$speciesKey)$data
                                             SPEC_NAME <- nl1$scientificName
@@ -1341,7 +1341,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           if(nl1$rank == "SPECIES"){
                                             SPEC_NAME <- nl1$scientificName
                                           } else {
-                                            if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                            if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                               if("speciesKey" %in% names(nl1)){
                                                 nl1 <- name_usage(key=nl1$speciesKey)$data
                                                 SPEC_NAME <- nl1$scientificName
@@ -1451,7 +1451,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         if(nl$rank == "SPECIES"){
                           SPEC_NAME <- nl$scientificName
                         } else {
-                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                             if("speciesKey" %in% names(nl)){
                               nl <- name_usage(key=nl$speciesKey)$data
                               SPEC_NAME <- nl$scientificName
@@ -1476,7 +1476,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(nl$rank == "SPECIES"){
                             SPEC_NAME <- nl$scientificName
                           } else {
-                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                               if("speciesKey" %in% names(nl)){
                                 nl <- name_usage(key=nl$speciesKey)$data
                                 SPEC_NAME <- nl$scientificName
@@ -1507,7 +1507,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(nl$rank == "SPECIES"){
                             SPEC_NAME <- nl$scientificName
                           } else {
-                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                               if("speciesKey" %in% names(nl)){
                                 nl <- name_usage(key=nl$speciesKey)$data
                                 SPEC_NAME <- nl$scientificName
@@ -1532,7 +1532,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(nl$rank == "SPECIES"){
                               SPEC_NAME <- nl$scientificName
                             } else {
-                              if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                              if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                 if("speciesKey" %in% names(nl)){
                                   nl <- name_usage(key=nl$speciesKey)$data
                                   SPEC_NAME <- nl$scientificName
@@ -1570,7 +1570,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(nl$rank == "SPECIES"){
                               SPEC_NAME <- nl$scientificName
                             } else {
-                              if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                              if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                 if("speciesKey" %in% names(nl)){
                                   nl <- name_usage(key=nl$speciesKey)$data
                                   SPEC_NAME <- nl$scientificName
@@ -1600,7 +1600,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(nl$rank == "SPECIES"){
                                 SPEC_NAME <- nl$scientificName
                               } else {
-                                if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                   if("speciesKey" %in% names(nl)){
                                     nl <- name_usage(key=nl$speciesKey)$data
                                     SPEC_NAME <- nl$scientificName
@@ -1648,7 +1648,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(nl$rank == "SPECIES"){
                                 SPEC_NAME <- nl$scientificName
                               } else {
-                                if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                   if("speciesKey" %in% names(nl)){
                                     nl <- name_usage(key=nl$speciesKey)$data
                                     SPEC_NAME <- nl$scientificName
@@ -1678,7 +1678,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 if(nl$rank == "SPECIES"){
                                   SPEC_NAME <- nl$scientificName
                                 } else {
-                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                     if("speciesKey" %in% names(nl)){
                                       nl <- name_usage(key=nl$speciesKey)$data
                                       SPEC_NAME <- nl$scientificName
@@ -1718,7 +1718,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(nl1$rank == "SPECIES"){
                                 SPEC_NAME <- nl1$scientificName
                               } else {
-                                if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                   if("speciesKey" %in% names(nl1)){
                                     nl1 <- name_usage(key=nl1$speciesKey)$data
                                     SPEC_NAME <- nl1$scientificName
@@ -1752,7 +1752,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   if(nl1$rank == "SPECIES"){
                                     SPEC_NAME <- nl1$scientificName
                                   } else {
-                                    if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                    if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                       if("speciesKey" %in% names(nl1)){
                                         nl1 <- name_usage(key=nl1$speciesKey)$data
                                         SPEC_NAME <- nl1$scientificName
@@ -1809,7 +1809,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(nl$rank == "SPECIES"){
                                 SPEC_NAME <- nl$scientificName
                               } else {
-                                if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                   if("speciesKey" %in% names(nl)){
                                     nl <- name_usage(key=nl$speciesKey)$data
                                     SPEC_NAME <- nl$scientificName
@@ -1836,7 +1836,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   if(nl$rank == "SPECIES"){
                                     SPEC_NAME <- nl$scientificName
                                   } else {
-                                    if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                    if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                       if("speciesKey" %in% names(nl)){
                                         nl <- name_usage(key=nl$speciesKey)$data
                                         SPEC_NAME <- nl$scientificName
@@ -1864,7 +1864,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   if(nl$rank == "SPECIES"){
                                     SPEC_NAME <- nl$scientificName
                                   } else {
-                                    if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                    if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                       if("speciesKey" %in% names(nl)){
                                         nl <- name_usage(key=nl$speciesKey)$data
                                         SPEC_NAME <- nl$scientificName
@@ -1896,7 +1896,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 if(nl$rank == "SPECIES"){
                                   SPEC_NAME <- nl$scientificName
                                 } else {
-                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                     if("speciesKey" %in% names(nl)){
                                       nl <- name_usage(key=nl$speciesKey)$data
                                       SPEC_NAME <- nl$scientificName
@@ -1933,7 +1933,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   if(nl$rank == "SPECIES"){
                                     SPEC_NAME <- nl$scientificName
                                   } else {
-                                    if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                    if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                       if("speciesKey" %in% names(nl)){
                                         nl <- name_usage(key=nl$speciesKey)$data
                                         SPEC_NAME <- nl$scientificName
@@ -1963,7 +1963,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     if(nl$rank == "SPECIES"){
                                       SPEC_NAME <- nl$scientificName
                                     } else {
-                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                         if("speciesKey" %in% names(nl)){
                                           nl <- name_usage(key=nl$speciesKey)$data
                                           SPEC_NAME <- nl$scientificName
@@ -2013,7 +2013,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(nl$rank == "SPECIES"){
                                 SPEC_NAME <- nl$scientificName
                               } else {
-                                if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                   if("speciesKey" %in% names(nl)){
                                     nl <- name_usage(key=nl$speciesKey)$data
                                     SPEC_NAME <- nl$scientificName
@@ -2043,7 +2043,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 if(nl$rank == "SPECIES"){
                                   SPEC_NAME <- nl$scientificName
                                 } else {
-                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                     if("speciesKey" %in% names(nl)){
                                       nl <- name_usage(key=nl$speciesKey)$data
                                       SPEC_NAME <- nl$scientificName
@@ -2083,7 +2083,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(nl1$rank == "SPECIES"){
                                 SPEC_NAME <- nl1$scientificName
                               } else {
-                                if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                   if("speciesKey" %in% names(nl1)){
                                     nl1 <- name_usage(key=nl1$speciesKey)$data
                                     SPEC_NAME <- nl1$scientificName
@@ -2117,7 +2117,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   if(nl1$rank == "SPECIES"){
                                     SPEC_NAME <- nl1$scientificName
                                   } else {
-                                    if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                    if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                       if("speciesKey" %in% names(nl1)){
                                         nl1 <- name_usage(key=nl1$speciesKey)$data
                                         SPEC_NAME <- nl1$scientificName
@@ -2181,7 +2181,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     if(nl$rank == "SPECIES"){
                                       SPEC_NAME <- nl$scientificName
                                     } else {
-                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                         if("speciesKey" %in% names(nl)){
                                           nl <- name_usage(key=nl$speciesKey)$data
                                           SPEC_NAME <- nl$scientificName
@@ -2220,7 +2220,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     if(nl$rank == "SPECIES"){
                                       SPEC_NAME <- nl$scientificName
                                     } else {
-                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                         if("speciesKey" %in% names(nl)){
                                           nl <- name_usage(key=nl$speciesKey)$data
                                           SPEC_NAME <- nl$scientificName
@@ -2247,7 +2247,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         if(nl$rank == "SPECIES"){
                                           SPEC_NAME <- nl$scientificName
                                         } else {
-                                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                             if("speciesKey" %in% names(nl)){
                                               nl <- name_usage(key=nl$speciesKey)$data
                                               SPEC_NAME <- nl$scientificName
@@ -2275,7 +2275,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         if(nl$rank == "SPECIES"){
                                           SPEC_NAME <- nl$scientificName
                                         } else {
-                                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                             if("speciesKey" %in% names(nl)){
                                               nl <- name_usage(key=nl$speciesKey)$data
                                               SPEC_NAME <- nl$scientificName
@@ -2307,7 +2307,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       if(nl$rank == "SPECIES"){
                                         SPEC_NAME <- nl$scientificName
                                       } else {
-                                        if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                        if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                           if("speciesKey" %in% names(nl)){
                                             nl <- name_usage(key=nl$speciesKey)$data
                                             SPEC_NAME <- nl$scientificName
@@ -2332,7 +2332,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         if(nl$rank == "SPECIES"){
                                           SPEC_NAME <- nl$scientificName
                                         } else {
-                                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                             if("speciesKey" %in% names(nl)){
                                               nl <- name_usage(key=nl$speciesKey)$data
                                               SPEC_NAME <- nl$scientificName
@@ -2370,7 +2370,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         if(nl$rank == "SPECIES"){
                                           SPEC_NAME <- nl$scientificName
                                         } else {
-                                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                          if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                             if("speciesKey" %in% names(nl)){
                                               nl <- name_usage(key=nl$speciesKey)$data
                                               SPEC_NAME <- nl$scientificName
@@ -2400,7 +2400,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           if(nl$rank == "SPECIES"){
                                             SPEC_NAME <- nl$scientificName
                                           } else {
-                                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                               if("speciesKey" %in% names(nl)){
                                                 nl <- name_usage(key=nl$speciesKey)$data
                                                 SPEC_NAME <- nl$scientificName
@@ -2488,7 +2488,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     if(nl$rank == "SPECIES"){
                                       SPEC_NAME <- nl$scientificName
                                     } else {
-                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                      if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                         if("speciesKey" %in% names(nl)){
                                           nl <- name_usage(key=nl$speciesKey)$data
                                           SPEC_NAME <- nl$scientificName
@@ -2518,7 +2518,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       if(nl$rank == "SPECIES"){
                                         SPEC_NAME <- nl$scientificName
                                       } else {
-                                        if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                        if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                           if("speciesKey" %in% names(nl)){
                                             nl <- name_usage(key=nl$speciesKey)$data
                                             SPEC_NAME <- nl$scientificName
@@ -2558,7 +2558,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           if(nl$rank == "SPECIES"){
                                             SPEC_NAME <- nl$scientificName
                                           } else {
-                                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                               if("speciesKey" %in% names(nl)){
                                                 nl <- name_usage(key=nl$speciesKey)$data
                                                 SPEC_NAME <- nl$scientificName
@@ -2588,7 +2588,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                             if(nl$rank == "SPECIES"){
                                               SPEC_NAME <- nl$scientificName
                                             } else {
-                                              if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                              if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                                 if("speciesKey" %in% names(nl)){
                                                   nl <- name_usage(key=nl$speciesKey)$data
                                                   SPEC_NAME <- nl$scientificName
@@ -2628,7 +2628,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           if(nl1$rank == "SPECIES"){
                                             SPEC_NAME <- nl1$scientificName
                                           } else {
-                                            if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                            if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                               if("speciesKey" %in% names(nl1)){
                                                 nl1 <- name_usage(key=nl1$speciesKey)$data
                                                 SPEC_NAME <- nl1$scientificName
@@ -2662,7 +2662,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                               if(nl1$rank == "SPECIES"){
                                                 SPEC_NAME <- nl1$scientificName
                                               } else {
-                                                if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY")){
+                                                if(nl1$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
                                                   if("speciesKey" %in% names(nl1)){
                                                     nl1 <- name_usage(key=nl1$speciesKey)$data
                                                     SPEC_NAME <- nl1$scientificName
