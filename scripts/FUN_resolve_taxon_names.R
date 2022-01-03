@@ -1,6 +1,6 @@
-# orig_name <- "Cephalozia bicuspidata"
+# orig_name <- "Betula sp2"
 # orig_name <- "Vaccnium myrtllus L."
-# dataset_key <- "bae5856f-da10-4333-90a0-5a2135361b30"
+# dataset_key <- "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
 # resolve_taxon_name(orig_name)
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(), maxtry = 2){
@@ -70,6 +70,10 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
             parts <- strsplit(i, " ")[[1]]
             parts[1] <- gsub("[^\\p{L} ]", "", parts[1], perl = TRUE)
             i <- paste(parts, collapse = " ")
+            
+            if(parts[2] %in% c("sp","sp.","spp","ssp","spp.","ssp.","spec.","species")){
+              i <- parts[1]
+            }
             
             nl <- name_suggest(q=i, datasetKey = dataset_key)$data
             
@@ -1367,6 +1371,10 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
               parts <- strsplit(i, " ")[[1]]
               parts[1] <- gsub("[^\\p{L} ]", "", parts[1], perl = TRUE)
               i <- paste(parts, collapse = " ")
+              
+              if(parts[2] %in% c("sp","sp.","spp","ssp","spp.","ssp.","spec.","species")){
+                i <- parts[1]
+              }
               
               tp <- TPL(i, diffchar = 1, max.distance = 1)
               if(tp$Typo & tp$Plant.Name.Index){
