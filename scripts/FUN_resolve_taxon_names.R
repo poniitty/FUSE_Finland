@@ -1,4 +1,4 @@
-# orig_name <- "Hedyotis st.-johnii"
+# orig_name <- "Hedyotis schlechtendahliana ssp. schlechtendahliana"
 # orig_name <- "Vaccnium myrtllus L."
 # dataset_key <- "bae5856f-da10-4333-90a0-5a2135361b30"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
@@ -1377,8 +1377,6 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               stop()
                             }
                           }
-                        } else {
-                          stop()
                         }
                       } else {
                         if(length(strsplit(i, " ")[[1]]) == 2){
