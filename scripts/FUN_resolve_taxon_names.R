@@ -1,4 +1,4 @@
-# orig_name <- "Taraxacum carpaticum"
+# orig_name <- "Hedyotis st.-johnii"
 # orig_name <- "Vaccnium myrtllus L."
 # dataset_key <- "bae5856f-da10-4333-90a0-5a2135361b30"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
@@ -101,7 +101,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           SPEC_NAME <- NA
                         }
                       } else {
-                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                           SPEC_NAME <- NA
                           NOTE <- "LIKELY HIGHER LEVEL TAXON"
                         } else {
@@ -127,7 +127,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               SPEC_NAME <- NA
                             }
                           } else {
-                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                               SPEC_NAME <- NA
                               NOTE <- "LIKELY HIGHER LEVEL TAXON"
                             } else {
@@ -154,7 +154,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               SPEC_NAME <- NA
                             }
                           } else {
-                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                               SPEC_NAME <- NA
                               NOTE <- "LIKELY HIGHER LEVEL TAXON"
                             } else {
@@ -185,7 +185,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             SPEC_NAME <- NA
                           }
                         } else {
-                          if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                          if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                             SPEC_NAME <- NA
                             NOTE <- "LIKELY HIGHER LEVEL TAXON"
                           } else {
@@ -209,7 +209,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               SPEC_NAME <- NA
                             }
                           } else {
-                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                               SPEC_NAME <- NA
                               NOTE <- "LIKELY HIGHER LEVEL TAXON"
                             } else {
@@ -246,7 +246,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               SPEC_NAME <- NA
                             }
                           } else {
-                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                               SPEC_NAME <- NA
                               NOTE <- "LIKELY HIGHER LEVEL TAXON"
                             } else {
@@ -275,7 +275,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 SPEC_NAME <- NA
                               }
                             } else {
-                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                 SPEC_NAME <- NA
                                 NOTE <- "LIKELY HIGHER LEVEL TAXON"
                               } else {
@@ -322,7 +322,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 SPEC_NAME <- NA
                               }
                             } else {
-                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                 SPEC_NAME <- NA
                                 NOTE <- "LIKELY HIGHER LEVEL TAXON"
                               } else {
@@ -351,7 +351,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   SPEC_NAME <- NA
                                 }
                               } else {
-                                if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                   SPEC_NAME <- NA
                                   NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                 } else {
@@ -390,7 +390,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 SPEC_NAME <- NA
                               }
                             } else {
-                              if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                              if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                 SPEC_NAME <- NA
                                 NOTE <- "LIKELY HIGHER LEVEL TAXON"
                               } else {
@@ -423,7 +423,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     SPEC_NAME <- NA
                                   }
                                 } else {
-                                  if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                  if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                     SPEC_NAME <- NA
                                     NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                   } else {
@@ -479,7 +479,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 SPEC_NAME <- NA
                               }
                             } else {
-                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                 SPEC_NAME <- NA
                                 NOTE <- "LIKELY HIGHER LEVEL TAXON"
                               } else {
@@ -505,7 +505,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     SPEC_NAME <- NA
                                   }
                                 } else {
-                                  if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                  if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                     SPEC_NAME <- NA
                                     NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                   } else {
@@ -532,7 +532,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     SPEC_NAME <- NA
                                   }
                                 } else {
-                                  if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                  if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                     SPEC_NAME <- NA
                                     NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                   } else {
@@ -563,7 +563,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   SPEC_NAME <- NA
                                 }
                               } else {
-                                if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                   SPEC_NAME <- NA
                                   NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                 } else {
@@ -599,7 +599,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     SPEC_NAME <- NA
                                   }
                                 } else {
-                                  if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                  if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                     SPEC_NAME <- NA
                                     NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                   } else {
@@ -628,7 +628,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       SPEC_NAME <- NA
                                     }
                                   } else {
-                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                       SPEC_NAME <- NA
                                       NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                     } else {
@@ -677,7 +677,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 SPEC_NAME <- NA
                               }
                             } else {
-                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                 SPEC_NAME <- NA
                                 NOTE <- "LIKELY HIGHER LEVEL TAXON"
                               } else {
@@ -706,7 +706,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   SPEC_NAME <- NA
                                 }
                               } else {
-                                if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                   SPEC_NAME <- NA
                                   NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                 } else {
@@ -745,7 +745,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 SPEC_NAME <- NA
                               }
                             } else {
-                              if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                              if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                 SPEC_NAME <- NA
                                 NOTE <- "LIKELY HIGHER LEVEL TAXON"
                               } else {
@@ -778,7 +778,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     SPEC_NAME <- NA
                                   }
                                 } else {
-                                  if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                  if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                     SPEC_NAME <- NA
                                     NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                   } else {
@@ -815,7 +815,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                     nl <- name_suggest(q=i, datasetKey = dataset_key)$data
                     if(nrow(nl) > 0){
                       if(nrow(nl) == 1){
-                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                           nl <- name_usage(key=nl$key)$data
                           if(nl$taxonomicStatus == "ACCEPTED"){
                             NAME <- nl$scientificName
@@ -841,7 +841,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       stop()
                                     }
                                   } else {
-                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                       SPEC_NAME <- NA
                                       NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                     } else {
@@ -879,7 +879,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       stop()
                                     }
                                   } else {
-                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                       SPEC_NAME <- NA
                                       NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                     } else {
@@ -905,7 +905,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           stop()
                                         }
                                       } else {
-                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                           SPEC_NAME <- NA
                                           NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                         } else {
@@ -932,7 +932,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           stop()
                                         }
                                       } else {
-                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                           SPEC_NAME <- NA
                                           NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                         } else {
@@ -963,7 +963,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         stop()
                                       }
                                     } else {
-                                      if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                      if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                         SPEC_NAME <- NA
                                         NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                       } else {
@@ -987,7 +987,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           stop()
                                         }
                                       } else {
-                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                           SPEC_NAME <- NA
                                           NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                         } else {
@@ -1024,7 +1024,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           stop()
                                         }
                                       } else {
-                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                           SPEC_NAME <- NA
                                           NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                         } else {
@@ -1053,7 +1053,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                             stop()
                                           }
                                         } else {
-                                          if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                          if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                             SPEC_NAME <- NA
                                             NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                           } else {
@@ -1096,7 +1096,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   SPEC_NAME <- NA
                                 }
                               } else {
-                                if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                   SPEC_NAME <- NA
                                   NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                 } else {
@@ -1129,7 +1129,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       SPEC_NAME <- NA
                                     }
                                   } else {
-                                    if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                    if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                       SPEC_NAME <- NA
                                       NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                     } else {
@@ -1175,7 +1175,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       SPEC_NAME <- NA
                                     }
                                   } else {
-                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                       SPEC_NAME <- NA
                                       NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                     } else {
@@ -1205,7 +1205,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         SPEC_NAME <- NA
                                       }
                                     } else {
-                                      if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                      if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                         SPEC_NAME <- NA
                                         NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                       } else {
@@ -1245,7 +1245,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                             SPEC_NAME <- NA
                                           }
                                         } else {
-                                          if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                          if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                             SPEC_NAME <- NA
                                             NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                           } else {
@@ -1275,7 +1275,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                               SPEC_NAME <- NA
                                             }
                                           } else {
-                                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                               SPEC_NAME <- NA
                                               NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                             } else {
@@ -1315,7 +1315,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                             SPEC_NAME <- NA
                                           }
                                         } else {
-                                          if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                          if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                             SPEC_NAME <- NA
                                             NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                           } else {
@@ -1349,7 +1349,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                                 SPEC_NAME <- NA
                                               }
                                             } else {
-                                              if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                              if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                                 SPEC_NAME <- NA
                                                 NOTE <- "LIKELY HIGHER LEVEL TAXON"
                                               } else {
@@ -1459,7 +1459,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               SPEC_NAME <- NA
                             }
                           } else {
-                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                               SPEC_NAME <- NA
                               NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                             } else {
@@ -1484,7 +1484,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 SPEC_NAME <- NA
                               }
                             } else {
-                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                 SPEC_NAME <- NA
                                 NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                               } else {
@@ -1515,7 +1515,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 SPEC_NAME <- NA
                               }
                             } else {
-                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                 SPEC_NAME <- NA
                                 NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                               } else {
@@ -1540,7 +1540,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   SPEC_NAME <- NA
                                 }
                               } else {
-                                if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                   SPEC_NAME <- NA
                                   NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                 } else {
@@ -1578,7 +1578,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   SPEC_NAME <- NA
                                 }
                               } else {
-                                if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                   SPEC_NAME <- NA
                                   NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                 } else {
@@ -1608,7 +1608,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     stop()
                                   }
                                 } else {
-                                  if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                  if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                     SPEC_NAME <- NA
                                     NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                   } else {
@@ -1656,7 +1656,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     SPEC_NAME <- NA
                                   }
                                 } else {
-                                  if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                  if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                     SPEC_NAME <- NA
                                     NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                   } else {
@@ -1686,7 +1686,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       SPEC_NAME <- NA
                                     }
                                   } else {
-                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                       SPEC_NAME <- NA
                                       NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                     } else {
@@ -1726,7 +1726,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     SPEC_NAME <- NA
                                   }
                                 } else {
-                                  if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                  if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                     SPEC_NAME <- NA
                                     NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                   } else {
@@ -1760,7 +1760,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         SPEC_NAME <- NA
                                       }
                                     } else {
-                                      if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                      if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                         SPEC_NAME <- NA
                                         NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                       } else {
@@ -1817,7 +1817,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     SPEC_NAME <- NA
                                   }
                                 } else {
-                                  if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                  if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                     SPEC_NAME <- NA
                                     NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                   } else {
@@ -1844,7 +1844,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         SPEC_NAME <- NA
                                       }
                                     } else {
-                                      if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                      if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                         SPEC_NAME <- NA
                                         NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                       } else {
@@ -1872,7 +1872,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         SPEC_NAME <- NA
                                       }
                                     } else {
-                                      if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                      if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                         SPEC_NAME <- NA
                                         NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                       } else {
@@ -1904,7 +1904,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       SPEC_NAME <- NA
                                     }
                                   } else {
-                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                       SPEC_NAME <- NA
                                       NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                     } else {
@@ -1941,7 +1941,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         SPEC_NAME <- NA
                                       }
                                     } else {
-                                      if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                      if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                         SPEC_NAME <- NA
                                         NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                       } else {
@@ -1971,7 +1971,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           SPEC_NAME <- NA
                                         }
                                       } else {
-                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                           SPEC_NAME <- NA
                                           NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                         } else {
@@ -2021,7 +2021,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     SPEC_NAME <- NA
                                   }
                                 } else {
-                                  if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                  if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                     SPEC_NAME <- NA
                                     NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                   } else {
@@ -2051,7 +2051,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       SPEC_NAME <- NA
                                     }
                                   } else {
-                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                       SPEC_NAME <- NA
                                       NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                     } else {
@@ -2091,7 +2091,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     SPEC_NAME <- NA
                                   }
                                 } else {
-                                  if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                  if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                     SPEC_NAME <- NA
                                     NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                   } else {
@@ -2125,7 +2125,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         SPEC_NAME <- NA
                                       }
                                     } else {
-                                      if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                      if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                         SPEC_NAME <- NA
                                         NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                       } else {
@@ -2162,7 +2162,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         nl <- name_suggest(q=i, datasetKey = dataset_key)$data
                         if(nrow(nl) > 0){
                           if(nrow(nl) == 1){
-                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                               nl <- name_usage(key=nl$key)$data
                               if(nl$taxonomicStatus == "ACCEPTED"){
                                 NAME <- nl$scientificName
@@ -2189,7 +2189,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           SPEC_NAME <- NA
                                         }
                                       } else {
-                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                           SPEC_NAME <- NA
                                           NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                         } else {
@@ -2228,7 +2228,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           SPEC_NAME <- NA
                                         }
                                       } else {
-                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                           SPEC_NAME <- NA
                                           NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                         } else {
@@ -2255,7 +2255,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                               SPEC_NAME <- NA
                                             }
                                           } else {
-                                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                               SPEC_NAME <- NA
                                               NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                             } else {
@@ -2283,7 +2283,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                               SPEC_NAME <- NA
                                             }
                                           } else {
-                                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                               SPEC_NAME <- NA
                                               NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                             } else {
@@ -2315,7 +2315,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                             SPEC_NAME <- NA
                                           }
                                         } else {
-                                          if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                          if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                             SPEC_NAME <- NA
                                             NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                           } else {
@@ -2340,7 +2340,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                               SPEC_NAME <- NA
                                             }
                                           } else {
-                                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                               SPEC_NAME <- NA
                                               NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                             } else {
@@ -2378,7 +2378,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                               SPEC_NAME <- NA
                                             }
                                           } else {
-                                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                            if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                               SPEC_NAME <- NA
                                               NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                             } else {
@@ -2408,7 +2408,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                                 SPEC_NAME <- NA
                                               }
                                             } else {
-                                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                                 SPEC_NAME <- NA
                                                 NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                               } else {
@@ -2496,7 +2496,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           SPEC_NAME <- NA
                                         }
                                       } else {
-                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                        if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                           SPEC_NAME <- NA
                                           NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                         } else {
@@ -2526,7 +2526,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                             SPEC_NAME <- NA
                                           }
                                         } else {
-                                          if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                          if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                             SPEC_NAME <- NA
                                             NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                           } else {
@@ -2566,7 +2566,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                                 SPEC_NAME <- NA
                                               }
                                             } else {
-                                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                                 SPEC_NAME <- NA
                                                 NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                               } else {
@@ -2596,7 +2596,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                                   SPEC_NAME <- NA
                                                 }
                                               } else {
-                                                if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                                if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                                   SPEC_NAME <- NA
                                                   NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                                 } else {
@@ -2636,7 +2636,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                                 SPEC_NAME <- NA
                                               }
                                             } else {
-                                              if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                              if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                                 SPEC_NAME <- NA
                                                 NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                               } else {
@@ -2670,7 +2670,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                                     SPEC_NAME <- NA
                                                   }
                                                 } else {
-                                                  if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM")){
+                                                  if(nl1$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN")){
                                                     SPEC_NAME <- NA
                                                     NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
                                                   } else {
