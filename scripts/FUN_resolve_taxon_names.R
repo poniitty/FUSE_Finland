@@ -1,6 +1,6 @@
-# orig_name <- "Rubus obtruncatus"
+# orig_name <- "Viola A-robinsoniana"
 # orig_name <- "Vaccnium myrtllus L."
-# dataset_key <- "f382f0ce-323a-4091-bb9f-add557f3a9a2"
+# dataset_key <- "bae5856f-da10-4333-90a0-5a2135361b30"
 # dataset <- c("f382f0ce-323a-4091-bb9f-add557f3a9a2","d9a4eedb-e985-4456-ad46-3df8472e00e8")
 # resolve_taxon_name(orig_name)
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(), maxtry = 2){
@@ -60,6 +60,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
               }
             }, silent = T)
             
+            i <- gsub(" A-"," ×",i)
             i <- gsub("ë","e",i)
             i <- gsub("^ ","",i)
             i <- gsub("^ ","",i)
@@ -1386,6 +1387,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                 }
               }, silent = T)
               
+              i <- gsub(" A-"," ×",i)
               i <- gsub("ë","e",i)
               i <- gsub("^ ","",i)
               i <- gsub("^ ","",i)
