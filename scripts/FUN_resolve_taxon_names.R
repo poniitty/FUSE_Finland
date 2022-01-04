@@ -1,4 +1,4 @@
-# orig_name <- "Hedlundia hybrida (L.) Sennikov & Kurtto"
+# orig_name <- "Betula nana subsp. nana"
 # dataset_key <- "d9a4eedb-e985-4456-ad46-3df8472e00e8"
 # resolve_taxon_name(orig_name)
 # resolve_taxon_name(orig_name, dataset = "bae5856f-da10-4333-90a0-5a2135361b30")
@@ -42,6 +42,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
       # print(dataset_key)
       # Try N times if failed first
       NAME <- NULL
+      KEY <- NA
       NOTE <- "OK"
       for(tryn in 1:maxtry){
         if(is.null(NAME)){
@@ -150,6 +151,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                 if(!nl$synonym){
                   if(nl$taxonomicStatus == "ACCEPTED"){
                     NAME <- nl$scientificName
+                    KEY <- nl$key
                     STATUS <- nl$taxonomicStatus
                     RANK <- nl$rank
                     if(nl$rank == "SPECIES"){
@@ -176,6 +178,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                       nl <- name_usage(key=nl$acceptedKey)$data
                       if(nl$taxonomicStatus == "ACCEPTED"){
                         NAME <- nl$scientificName
+                        KEY <- nl$key
                         STATUS <- nl$taxonomicStatus
                         RANK <- nl$rank
                         if(nl$rank == "SPECIES"){
@@ -203,6 +206,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                     } else {
                       if(nl$taxonomicStatus == "DOUBTFUL"){
                         NAME <- nl$scientificName
+                        KEY <- nl$key
                         STATUS <- nl$taxonomicStatus
                         RANK <- nl$rank
                         if(nl$rank == "SPECIES"){
@@ -234,6 +238,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                     nl <- name_usage(key=nl$acceptedKey)$data
                     if(nl$taxonomicStatus == "ACCEPTED"){
                       NAME <- nl$scientificName
+                      KEY <- nl$key
                       STATUS <- nl$taxonomicStatus
                       RANK <- nl$rank
                       if(nl$rank == "SPECIES"){
@@ -258,6 +263,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                     } else {
                       if(nl$taxonomicStatus == "DOUBTFUL"){
                         NAME <- nl$scientificName
+                        KEY <- nl$key
                         STATUS <- nl$taxonomicStatus
                         RANK <- nl$rank
                         if(nl$rank == "SPECIES"){
@@ -295,6 +301,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                     if(!nl$synonym){
                       if(nl$taxonomicStatus == "ACCEPTED"){
                         NAME <- nl$scientificName
+                        KEY <- nl$key
                         STATUS <- nl$taxonomicStatus
                         RANK <- nl$rank
                         if(nl$rank == "SPECIES"){
@@ -321,6 +328,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           nl <- name_usage(key=nl$acceptedKey)$data
                           if(nl$taxonomicStatus == "ACCEPTED"){
                             NAME <- nl$scientificName
+                            KEY <- nl$key
                             STATUS <- nl$taxonomicStatus
                             RANK <- nl$rank
                             if(nl$rank == "SPECIES"){
@@ -348,6 +356,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         } else {
                           if(nl$taxonomicStatus == "DOUBTFUL"){
                             NAME <- nl$scientificName
+                            KEY <- nl$key
                             STATUS <- nl$taxonomicStatus
                             RANK <- nl$rank
                             if(nl$rank == "SPECIES"){
@@ -379,6 +388,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         nl <- name_usage(key=nl$acceptedKey)$data
                         if(nl$taxonomicStatus == "ACCEPTED"){
                           NAME <- nl$scientificName
+                          KEY <- nl$key
                           STATUS <- nl$taxonomicStatus
                           RANK <- nl$rank
                           if(nl$rank == "SPECIES"){
@@ -405,6 +415,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             nl <- name_usage(key=nl$acceptedKey)$data
                             if(nl$taxonomicStatus == "ACCEPTED"){
                               NAME <- nl$scientificName
+                              KEY <- nl$key
                               STATUS <- nl$taxonomicStatus
                               RANK <- nl$rank
                               if(nl$rank == "SPECIES"){
@@ -432,6 +443,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           } else {
                             if(nl$taxonomicStatus == "DOUBTFUL"){
                               NAME <- nl$scientificName
+                              KEY <- nl$key
                               STATUS <- nl$taxonomicStatus
                               RANK <- nl$rank
                               if(nl$rank == "SPECIES"){
@@ -482,6 +494,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         if(!nl$synonym){
                           if(nl$taxonomicStatus == "ACCEPTED"){
                             NAME <- nl$scientificName
+                            KEY <- nl$key
                             STATUS <- nl$taxonomicStatus
                             RANK <- nl$rank
                             if(nl$rank == "SPECIES"){
@@ -508,6 +521,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               nl <- name_usage(key=nl$acceptedKey)$data
                               if(nl$taxonomicStatus == "ACCEPTED"){
                                 NAME <- nl$scientificName
+                                KEY <- nl$key
                                 STATUS <- nl$taxonomicStatus
                                 RANK <- nl$rank
                                 if(nl$rank == "SPECIES"){
@@ -535,6 +549,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             } else {
                               if(nl$taxonomicStatus == "DOUBTFUL"){
                                 NAME <- nl$scientificName
+                                KEY <- nl$key
                                 STATUS <- nl$taxonomicStatus
                                 RANK <- nl$rank
                                 if(nl$rank == "SPECIES"){
@@ -566,6 +581,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             nl <- name_usage(key=nl$acceptedKey)$data
                             if(nl$taxonomicStatus == "ACCEPTED"){
                               NAME <- nl$scientificName
+                              KEY <- nl$key
                               STATUS <- nl$taxonomicStatus
                               RANK <- nl$rank
                               if(nl$rank == "SPECIES"){
@@ -590,6 +606,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             } else {
                               if(nl$taxonomicStatus == "DOUBTFUL"){
                                 NAME <- nl$scientificName
+                                KEY <- nl$key
                                 STATUS <- nl$taxonomicStatus
                                 RANK <- nl$rank
                                 if(nl$rank == "SPECIES"){
@@ -630,6 +647,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                             success <- TRUE
                             NAME <- nl1$scientificName
+                            KEY <- nl1$key
                             STATUS <- nl1$taxonomicStatus
                             RANK <- nl1$rank
                             if(nl1$rank == "SPECIES"){
@@ -663,6 +681,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                 success <- TRUE
                                 NAME <- nl1$scientificName
+                                KEY <- nl1$key
                                 STATUS <- nl1$taxonomicStatus
                                 RANK <- nl1$rank
                                 if(nl1$rank == "SPECIES"){
@@ -691,6 +710,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         }
                         if(success == FALSE){
                           NAME <- NA
+                          KEY <- NA
                           STATUS <- NA
                           NOTE = "NOT FOUND"
                           RANK <- NA
@@ -707,6 +727,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         stop()
                       } else {
                         NAME <- NA
+                        KEY <- NA
                         STATUS <- NA
                         RANK <- NA
                         NOTE = "LIKELY HIGHER LEVEL TAXON"
@@ -719,6 +740,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         if(!nl$synonym){
                           if(nl$taxonomicStatus == "ACCEPTED"){
                             NAME <- nl$scientificName
+                            KEY <- nl$key
                             STATUS <- nl$taxonomicStatus
                             RANK <- nl$rank
                             if(nl$rank == "SPECIES"){
@@ -745,6 +767,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               nl <- name_usage(key=nl$acceptedKey)$data
                               if(nl$taxonomicStatus == "ACCEPTED"){
                                 NAME <- nl$scientificName
+                                KEY <- nl$key
                                 STATUS <- nl$taxonomicStatus
                                 RANK <- nl$rank
                                 if(nl$rank == "SPECIES"){
@@ -772,6 +795,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             } else {
                               if(nl$taxonomicStatus == "DOUBTFUL"){
                                 NAME <- nl$scientificName
+                                KEY <- nl$key
                                 STATUS <- nl$taxonomicStatus
                                 RANK <- nl$rank
                                 if(nl$rank == "SPECIES"){
@@ -803,6 +827,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             nl <- name_usage(key=nl$acceptedKey)$data
                             if(nl$taxonomicStatus == "ACCEPTED"){
                               NAME <- nl$scientificName
+                              KEY <- nl$key
                               STATUS <- nl$taxonomicStatus
                               RANK <- nl$rank
                               if(nl$rank == "SPECIES"){
@@ -839,6 +864,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(!nl$synonym){
                               if(nl$taxonomicStatus == "ACCEPTED"){
                                 NAME <- nl$scientificName
+                                KEY <- nl$key
                                 STATUS <- nl$taxonomicStatus
                                 RANK <- nl$rank
                                 if(nl$rank == "SPECIES"){
@@ -865,6 +891,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   nl <- name_usage(key=nl$acceptedKey)$data
                                   if(nl$taxonomicStatus == "ACCEPTED"){
                                     NAME <- nl$scientificName
+                                    KEY <- nl$key
                                     STATUS <- nl$taxonomicStatus
                                     RANK <- nl$rank
                                     if(nl$rank == "SPECIES"){
@@ -892,6 +919,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 } else {
                                   if(nl$taxonomicStatus == "DOUBTFUL"){
                                     NAME <- nl$scientificName
+                                    KEY <- nl$key
                                     STATUS <- nl$taxonomicStatus
                                     RANK <- nl$rank
                                     if(nl$rank == "SPECIES"){
@@ -923,6 +951,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 nl <- name_usage(key=nl$acceptedKey)$data
                                 if(nl$taxonomicStatus == "ACCEPTED"){
                                   NAME <- nl$scientificName
+                                  KEY <- nl$key
                                   STATUS <- nl$taxonomicStatus
                                   RANK <- nl$rank
                                   if(nl$rank == "SPECIES"){
@@ -976,6 +1005,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                       if(!nl$synonym){
                         if(nl$taxonomicStatus == "ACCEPTED"){
                           NAME <- nl$scientificName
+                          KEY <- nl$key
                           STATUS <- nl$taxonomicStatus
                           RANK <- nl$rank
                           if(nl$rank == "SPECIES"){
@@ -1002,6 +1032,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             nl <- name_usage(key=nl$acceptedKey)$data
                             if(nl$taxonomicStatus == "ACCEPTED"){
                               NAME <- nl$scientificName
+                              KEY <- nl$key
                               STATUS <- nl$taxonomicStatus
                               RANK <- nl$rank
                               if(nl$rank == "SPECIES"){
@@ -1029,6 +1060,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           } else {
                             if(nl$taxonomicStatus == "DOUBTFUL"){
                               NAME <- nl$scientificName
+                              KEY <- nl$key
                               STATUS <- nl$taxonomicStatus
                               RANK <- nl$rank
                               if(nl$rank == "SPECIES"){
@@ -1060,6 +1092,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           nl <- name_usage(key=nl$acceptedKey)$data
                           if(nl$taxonomicStatus == "ACCEPTED"){
                             NAME <- nl$scientificName
+                            KEY <- nl$key
                             STATUS <- nl$taxonomicStatus
                             RANK <- nl$rank
                             if(nl$rank == "SPECIES"){
@@ -1084,6 +1117,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           } else {
                             if(nl$taxonomicStatus == "DOUBTFUL"){
                               NAME <- nl$scientificName
+                              KEY <- nl$key
                               STATUS <- nl$taxonomicStatus
                               RANK <- nl$rank
                               if(nl$rank == "SPECIES"){
@@ -1124,6 +1158,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                           success <- TRUE
                           NAME <- nl1$scientificName
+                          KEY <- nl1$key
                           STATUS <- nl1$taxonomicStatus
                           RANK <- nl1$rank
                           if(nl1$rank == "SPECIES"){
@@ -1157,6 +1192,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                               success <- TRUE
                               NAME <- nl1$scientificName
+                              KEY <- nl1$key
                               STATUS <- nl1$taxonomicStatus
                               RANK <- nl1$rank
                               if(nl1$rank == "SPECIES"){
@@ -1185,6 +1221,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                       }
                       if(success == FALSE){
                         NAME <- NA
+                        KEY <- NA
                         STATUS <- NA
                         NOTE = "NOT FOUND"
                         RANK <- NA
@@ -1198,6 +1235,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                   if(nrow(nl) == 100 & (grepl("×", orig_name)|grepl(" x ", orig_name)|grepl(" X ", orig_name))){
                     i <- orig_name
                     NAME <- NA
+                    KEY <- NA
                     STATUS <- NA
                     RANK <- "HYBRID"
                     NOTE = "HYBRID TAXA! RESOLVING FAILED"
@@ -1212,6 +1250,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           nl <- name_usage(key=nl$key)$data
                           if(nl$taxonomicStatus == "ACCEPTED"){
                             NAME <- nl$scientificName
+                            KEY <- nl$key
                             STATUS <- nl$taxonomicStatus
                             RANK <- nl$rank
                             SPEC_NAME <- NA
@@ -1247,6 +1286,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               }
                             } else {
                               NAME <- NA
+                              KEY <- NA
                               STATUS <- NA
                               SPEC_NAME <- NA
                               RANK <- NA
@@ -1259,6 +1299,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(!nl$synonym){
                               if(nl$taxonomicStatus == "ACCEPTED"){
                                 NAME <- nl$scientificName
+                                KEY <- nl$key
                                 STATUS <- nl$taxonomicStatus
                                 RANK <- nl$rank
                                 if(nl$rank == "SPECIES"){
@@ -1285,6 +1326,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   nl <- name_usage(key=nl$acceptedKey)$data
                                   if(nl$taxonomicStatus == "ACCEPTED"){
                                     NAME <- nl$scientificName
+                                    KEY <- nl$key
                                     STATUS <- nl$taxonomicStatus
                                     RANK <- nl$rank
                                     if(nl$rank == "SPECIES"){
@@ -1312,6 +1354,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 } else {
                                   if(nl$taxonomicStatus == "DOUBTFUL"){
                                     NAME <- nl$scientificName
+                                    KEY <- nl$key
                                     STATUS <- nl$taxonomicStatus
                                     RANK <- nl$rank
                                     if(nl$rank == "SPECIES"){
@@ -1343,6 +1386,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 nl <- name_usage(key=nl$acceptedKey)$data
                                 if(nl$taxonomicStatus == "ACCEPTED"){
                                   NAME <- nl$scientificName
+                                  KEY <- nl$key
                                   STATUS <- nl$taxonomicStatus
                                   RANK <- nl$rank
                                   if(nl$rank == "SPECIES"){
@@ -1367,6 +1411,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 } else {
                                   if(nl$taxonomicStatus == "DOUBTFUL"){
                                     NAME <- nl$scientificName
+                                    KEY <- nl$key
                                     STATUS <- nl$taxonomicStatus
                                     RANK <- nl$rank
                                     if(nl$rank == "SPECIES"){
@@ -1404,6 +1449,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 if(!nl$synonym){
                                   if(nl$taxonomicStatus == "ACCEPTED"){
                                     NAME <- nl$scientificName
+                                    KEY <- nl$key
                                     STATUS <- nl$taxonomicStatus
                                     RANK <- nl$rank
                                     if(nl$rank == "SPECIES"){
@@ -1430,6 +1476,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       nl <- name_usage(key=nl$acceptedKey)$data
                                       if(nl$taxonomicStatus == "ACCEPTED"){
                                         NAME <- nl$scientificName
+                                        KEY <- nl$key
                                         STATUS <- nl$taxonomicStatus
                                         RANK <- nl$rank
                                         if(nl$rank == "SPECIES"){
@@ -1457,6 +1504,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     } else {
                                       if(nl$taxonomicStatus == "DOUBTFUL"){
                                         NAME <- nl$scientificName
+                                        KEY <- nl$key
                                         STATUS <- nl$taxonomicStatus
                                         RANK <- nl$rank
                                         if(nl$rank == "SPECIES"){
@@ -1488,6 +1536,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     nl <- name_usage(key=nl$acceptedKey)$data
                                     if(nl$taxonomicStatus == "ACCEPTED"){
                                       NAME <- nl$scientificName
+                                      KEY <- nl$key
                                       STATUS <- nl$taxonomicStatus
                                       RANK <- nl$rank
                                       if(nl$rank == "SPECIES"){
@@ -1531,6 +1580,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                             success <- TRUE
                             NAME <- nl1$scientificName
+                            KEY <- nl1$key
                             STATUS <- nl1$taxonomicStatus
                             RANK <- nl1$rank
                             if(nl1$rank == "SPECIES"){
@@ -1564,6 +1614,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                 success <- TRUE
                                 NAME <- nl1$scientificName
+                                KEY <- nl1$key
                                 STATUS <- nl1$taxonomicStatus
                                 RANK <- nl1$rank
                                 if(nl1$rank == "SPECIES"){
@@ -1592,6 +1643,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         }
                         if(success == FALSE){
                           NAME <- NA
+                          KEY <- NA
                           STATUS <- NA
                           RANK <- NA
                           NOTE = "NOT FOUND"
@@ -1610,6 +1662,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(!nl$synonym){
                               if(nl$taxonomicStatus == "ACCEPTED"){
                                 NAME <- nl$scientificName
+                                KEY <- nl$key
                                 STATUS <- nl$taxonomicStatus
                                 NOTE = "PARSED TO SPECIES"
                                 RANK <- nl$rank
@@ -1637,6 +1690,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   nl <- name_usage(key=nl$acceptedKey)$data
                                   if(nl$taxonomicStatus == "ACCEPTED"){
                                     NAME <- nl$scientificName
+                                    KEY <- nl$key
                                     STATUS <- nl$taxonomicStatus
                                     RANK <- nl$rank
                                     NOTE = "PARSED TO SPECIES"
@@ -1665,6 +1719,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 } else {
                                   if(nl$taxonomicStatus == "DOUBTFUL"){
                                     NAME <- nl$scientificName
+                                    KEY <- nl$key
                                     STATUS <- nl$taxonomicStatus
                                     RANK <- nl$rank
                                     NOTE = "PARSED TO SPECIES"
@@ -1697,6 +1752,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 nl <- name_usage(key=nl$acceptedKey)$data
                                 if(nl$taxonomicStatus == "ACCEPTED"){
                                   NAME <- nl$scientificName
+                                  KEY <- nl$key
                                   STATUS <- nl$taxonomicStatus
                                   NOTE = "PARSED TO SPECIES"
                                   RANK <- nl$rank
@@ -1724,6 +1780,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     nl <- name_usage(key=nl$acceptedKey)$data
                                     if(nl$taxonomicStatus == "ACCEPTED"){
                                       NAME <- nl$scientificName
+                                      KEY <- nl$key
                                       STATUS <- nl$taxonomicStatus
                                       RANK <- nl$rank
                                       NOTE = "PARSED TO SPECIES"
@@ -1752,6 +1809,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   } else {
                                     if(nl$taxonomicStatus == "DOUBTFUL"){
                                       NAME <- nl$scientificName
+                                      KEY <- nl$key
                                       STATUS <- nl$taxonomicStatus
                                       RANK <- nl$rank
                                       NOTE = "PARSED TO SPECIES"
@@ -1794,6 +1852,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   if(!nl$synonym){
                                     if(nl$taxonomicStatus == "ACCEPTED"){
                                       NAME <- nl$scientificName
+                                      KEY <- nl$key
                                       STATUS <- nl$taxonomicStatus
                                       NOTE = "PARSED TO SPECIES"
                                       RANK <- nl$rank
@@ -1821,6 +1880,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         nl <- name_usage(key=nl$acceptedKey)$data
                                         if(nl$taxonomicStatus == "ACCEPTED"){
                                           NAME <- nl$scientificName
+                                          KEY <- nl$key
                                           STATUS <- nl$taxonomicStatus
                                           RANK <- nl$rank
                                           NOTE = "PARSED TO SPECIES"
@@ -1849,6 +1909,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       } else {
                                         if(nl$taxonomicStatus == "DOUBTFUL"){
                                           NAME <- nl$scientificName
+                                          KEY <- nl$key
                                           STATUS <- nl$taxonomicStatus
                                           RANK <- nl$rank
                                           NOTE = "PARSED TO SPECIES"
@@ -1881,6 +1942,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       nl <- name_usage(key=nl$acceptedKey)$data
                                       if(nl$taxonomicStatus == "ACCEPTED"){
                                         NAME <- nl$scientificName
+                                        KEY <- nl$key
                                         STATUS <- nl$taxonomicStatus
                                         NOTE = "PARSED TO SPECIES"
                                         RANK <- nl$rank
@@ -1921,6 +1983,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                       success <- TRUE
                                       NAME <- nl1$scientificName
+                                      KEY <- nl1$key
                                       STATUS <- nl1$taxonomicStatus
                                       NOTE = "PARSED TO SPECIES"
                                       RANK <- nl1$rank
@@ -1955,6 +2018,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                           success <- TRUE
                                           NAME <- nl1$scientificName
+                                          KEY <- nl1$key
                                           STATUS <- nl1$taxonomicStatus
                                           NOTE = "PARSED TO SPECIES"
                                           RANK <- nl1$rank
@@ -1984,6 +2048,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   }
                                   if(success == FALSE){
                                     NAME <- NA
+                                    KEY <- NA
                                     STATUS <- NA
                                     RANK <- NA
                                     NOTE = "NOT FOUND"
@@ -2000,6 +2065,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                   success <- TRUE
                                   NAME <- nl1$scientificName
+                                  KEY <- nl1$key
                                   STATUS <- nl1$taxonomicStatus
                                   RANK <- nl1$rank
                                   NOTE = "PARSED TO SPECIES"
@@ -2034,6 +2100,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                       success <- TRUE
                                       NAME <- nl1$scientificName
+                                      KEY <- nl1$key
                                       STATUS <- nl1$taxonomicStatus
                                       RANK <- nl1$rank
                                       NOTE = "PARSED TO SPECIES"
@@ -2063,6 +2130,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               }
                               if(success == FALSE){
                                 NAME <- NA
+                                KEY <- NA
                                 STATUS <- NA
                                 RANK <- NA
                                 NOTE = "NOT FOUND"
@@ -2075,6 +2143,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         if(length(strsplit(i, " ")[[1]]) == 2){
                           if(strsplit(i, " ")[[1]][2] == "spec."){
                             NAME <- NA
+                            KEY <- NA
                             STATUS <- NA
                             SPEC_NAME <- NA
                             RANK <- NA
@@ -2196,6 +2265,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                     if(!nl$synonym){
                       if(nl$taxonomicStatus == "ACCEPTED"){
                         NAME <- nl$scientificName
+                        KEY <- nl$key
                         STATUS <- nl$taxonomicStatus
                         RANK <- nl$rank
                         NOTE <- "FUZZY MATCHING"
@@ -2221,6 +2291,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                       } else {
                         if(nl$taxonomicStatus == "DOUBTFUL"){
                           NAME <- nl$scientificName
+                          KEY <- nl$key
                           STATUS <- nl$taxonomicStatus
                           RANK <- nl$rank
                           NOTE <- "FUZZY MATCHING"
@@ -2252,6 +2323,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         nl <- name_usage(key=nl$acceptedKey)$data
                         if(nl$taxonomicStatus == "ACCEPTED"){
                           NAME <- nl$scientificName
+                          KEY <- nl$key
                           STATUS <- nl$taxonomicStatus
                           RANK <- nl$rank
                           NOTE <- "FUZZY MATCHING"
@@ -2277,6 +2349,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         } else {
                           if(nl$taxonomicStatus == "DOUBTFUL"){
                             NAME <- nl$scientificName
+                            KEY <- nl$key
                             STATUS <- nl$taxonomicStatus
                             RANK <- nl$rank
                             NOTE <- "FUZZY MATCHING"
@@ -2315,6 +2388,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         if(!nl$synonym){
                           if(nl$taxonomicStatus == "ACCEPTED"){
                             NAME <- nl$scientificName
+                            KEY <- nl$key
                             STATUS <- nl$taxonomicStatus
                             RANK <- nl$rank
                             NOTE <- "FUZZY MATCHING"
@@ -2342,6 +2416,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               nl <- name_usage(key=nl$acceptedKey)$data
                               if(nl$taxonomicStatus == "ACCEPTED"){
                                 NAME <- nl$scientificName
+                                KEY <- nl$key
                                 STATUS <- nl$taxonomicStatus
                                 RANK <- nl$rank
                                 NOTE <- "FUZZY MATCHING"
@@ -2370,6 +2445,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             } else {
                               if(nl$taxonomicStatus == "DOUBTFUL"){
                                 NAME <- nl$scientificName
+                                KEY <- nl$key
                                 STATUS <- nl$taxonomicStatus
                                 RANK <- nl$rank
                                 NOTE <- "FUZZY MATCHING"
@@ -2402,6 +2478,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             nl <- name_usage(key=nl$acceptedKey)$data
                             if(nl$taxonomicStatus == "ACCEPTED"){
                               NAME <- nl$scientificName
+                              KEY <- nl$key
                               STATUS <- nl$taxonomicStatus
                               RANK <- nl$rank
                               NOTE <- "FUZZY MATCHING"
@@ -2450,6 +2527,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(!nl$synonym){
                             if(nl$taxonomicStatus == "ACCEPTED"){
                               NAME <- nl$scientificName
+                              KEY <- nl$key
                               STATUS <- nl$taxonomicStatus
                               RANK <- nl$rank
                               NOTE <- "FUZZY MATCHING"
@@ -2477,6 +2555,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 nl <- name_usage(key=nl$acceptedKey)$data
                                 if(nl$taxonomicStatus == "ACCEPTED"){
                                   NAME <- nl$scientificName
+                                  KEY <- nl$key
                                   STATUS <- nl$taxonomicStatus
                                   RANK <- nl$rank
                                   NOTE <- "FUZZY MATCHING"
@@ -2505,6 +2584,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               } else {
                                 if(nl$taxonomicStatus == "DOUBTFUL"){
                                   NAME <- nl$scientificName
+                                  KEY <- nl$key
                                   STATUS <- nl$taxonomicStatus
                                   RANK <- nl$rank
                                   NOTE <- "FUZZY MATCHING"
@@ -2537,6 +2617,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               nl <- name_usage(key=nl$acceptedKey)$data
                               if(nl$taxonomicStatus == "ACCEPTED"){
                                 NAME <- nl$scientificName
+                                KEY <- nl$key
                                 STATUS <- nl$taxonomicStatus
                                 RANK <- nl$rank
                                 NOTE <- "FUZZY MATCHING"
@@ -2577,6 +2658,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                               success <- TRUE
                               NAME <- nl1$scientificName
+                              KEY <- nl1$key
                               STATUS <- nl1$taxonomicStatus
                               RANK <- nl1$rank
                               NOTE <- "FUZZY MATCHING"
@@ -2611,6 +2693,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                   success <- TRUE
                                   NAME <- nl1$scientificName
+                                  KEY <- nl1$key
                                   STATUS <- nl1$taxonomicStatus
                                   RANK <- nl1$rank
                                   NOTE <- "FUZZY MATCHING"
@@ -2640,6 +2723,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           }
                           if(success == FALSE){
                             NAME <- NA
+                            KEY <- NA
                             STATUS <- NA
                             NOTE = "NOT FOUND"
                             RANK <- NA
@@ -2656,6 +2740,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           stop()
                         } else {
                           NAME <- NA
+                          KEY <- NA
                           STATUS <- NA
                           RANK <- NA
                           NOTE = "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
@@ -2668,6 +2753,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(!nl$synonym){
                             if(nl$taxonomicStatus == "ACCEPTED"){
                               NAME <- nl$scientificName
+                              KEY <- nl$key
                               STATUS <- nl$taxonomicStatus
                               RANK <- nl$rank
                               NOTE <- "FUZZY MATCHING"
@@ -2695,6 +2781,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 nl <- name_usage(key=nl$acceptedKey)$data
                                 if(nl$taxonomicStatus == "ACCEPTED"){
                                   NAME <- nl$scientificName
+                                  KEY <- nl$key
                                   STATUS <- nl$taxonomicStatus
                                   RANK <- nl$rank
                                   NOTE <- "FUZZY MATCHING"
@@ -2723,6 +2810,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               } else {
                                 if(nl$taxonomicStatus == "DOUBTFUL"){
                                   NAME <- nl$scientificName
+                                  KEY <- nl$key
                                   STATUS <- nl$taxonomicStatus
                                   RANK <- nl$rank
                                   NOTE <- "FUZZY MATCHING"
@@ -2755,6 +2843,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               nl <- name_usage(key=nl$acceptedKey)$data
                               if(nl$taxonomicStatus == "ACCEPTED"){
                                 NAME <- nl$scientificName
+                                KEY <- nl$key
                                 STATUS <- nl$taxonomicStatus
                                 RANK <- nl$rank
                                 NOTE <- "FUZZY MATCHING"
@@ -2792,6 +2881,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(!nl$synonym){
                                 if(nl$taxonomicStatus == "ACCEPTED"){
                                   NAME <- nl$scientificName
+                                  KEY <- nl$key
                                   STATUS <- nl$taxonomicStatus
                                   RANK <- nl$rank
                                   NOTE <- "FUZZY MATCHING"
@@ -2819,6 +2909,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     nl <- name_usage(key=nl$acceptedKey)$data
                                     if(nl$taxonomicStatus == "ACCEPTED"){
                                       NAME <- nl$scientificName
+                                      KEY <- nl$key
                                       STATUS <- nl$taxonomicStatus
                                       RANK <- nl$rank
                                       NOTE <- "FUZZY MATCHING"
@@ -2847,6 +2938,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   } else {
                                     if(nl$taxonomicStatus == "DOUBTFUL"){
                                       NAME <- nl$scientificName
+                                      KEY <- nl$key
                                       STATUS <- nl$taxonomicStatus
                                       RANK <- nl$rank
                                       NOTE <- "FUZZY MATCHING"
@@ -2879,6 +2971,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   nl <- name_usage(key=nl$acceptedKey)$data
                                   if(nl$taxonomicStatus == "ACCEPTED"){
                                     NAME <- nl$scientificName
+                                    KEY <- nl$key
                                     STATUS <- nl$taxonomicStatus
                                     RANK <- nl$rank
                                     NOTE <- "FUZZY MATCHING"
@@ -2930,6 +3023,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(!nl$synonym){
                             if(nl$taxonomicStatus == "ACCEPTED"){
                               NAME <- nl$scientificName
+                              KEY <- nl$key
                               STATUS <- nl$taxonomicStatus
                               RANK <- nl$rank
                               NOTE <- "FUZZY MATCHING"
@@ -2957,6 +3051,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 nl <- name_usage(key=nl$acceptedKey)$data
                                 if(nl$taxonomicStatus == "ACCEPTED"){
                                   NAME <- nl$scientificName
+                                  KEY <- nl$key
                                   STATUS <- nl$taxonomicStatus
                                   RANK <- nl$rank
                                   NOTE <- "FUZZY MATCHING"
@@ -2985,6 +3080,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               } else {
                                 if(nl$taxonomicStatus == "DOUBTFUL"){
                                   NAME <- nl$scientificName
+                                  KEY <- nl$key
                                   STATUS <- nl$taxonomicStatus
                                   RANK <- nl$rank
                                   NOTE <- "FUZZY MATCHING"
@@ -3017,6 +3113,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               nl <- name_usage(key=nl$acceptedKey)$data
                               if(nl$taxonomicStatus == "ACCEPTED"){
                                 NAME <- nl$scientificName
+                                KEY <- nl$key
                                 STATUS <- nl$taxonomicStatus
                                 RANK <- nl$rank
                                 NOTE <- "FUZZY MATCHING"
@@ -3057,6 +3154,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                               success <- TRUE
                               NAME <- nl1$scientificName
+                              KEY <- nl1$key
                               STATUS <- nl1$taxonomicStatus
                               RANK <- nl1$rank
                               NOTE <- "FUZZY MATCHING"
@@ -3091,6 +3189,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                   success <- TRUE
                                   NAME <- nl1$scientificName
+                                  KEY <- nl1$key
                                   STATUS <- nl1$taxonomicStatus
                                   RANK <- nl1$rank
                                   NOTE <- "FUZZY MATCHING"
@@ -3120,6 +3219,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           }
                           if(success == FALSE){
                             NAME <- NA
+                            KEY <- NA
                             STATUS <- NA
                             NOTE = "NOT FOUND"
                             RANK <- NA
@@ -3133,6 +3233,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                       if(nrow(nl) == 100 & grepl("×", orig_name)){
                         i <- orig_name
                         NAME <- NA
+                        KEY <- NA
                         STATUS <- NA
                         RANK <- "HYBRID"
                         NOTE = "FUZZY MATCHING! HYBRID TAXA! RESOLVING FAILED"
@@ -3147,6 +3248,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               nl <- name_usage(key=nl$key)$data
                               if(nl$taxonomicStatus == "ACCEPTED"){
                                 NAME <- nl$scientificName
+                                KEY <- nl$key
                                 STATUS <- nl$taxonomicStatus
                                 RANK <- nl$rank
                                 SPEC_NAME <- NA
@@ -3156,6 +3258,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   nl <- name_usage(key=nl$acceptedKey)$data
                                   if(nl$taxonomicStatus == "ACCEPTED"){
                                     NAME <- nl$scientificName
+                                    KEY <- nl$key
                                     STATUS <- nl$taxonomicStatus
                                     RANK <- nl$rank
                                     NOTE <- "FUZZY MATCHING"
@@ -3183,6 +3286,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   }
                                 } else {
                                   NAME <- NA
+                                  KEY <- NA
                                   STATUS <- NA
                                   SPEC_NAME <- NA
                                   RANK <- NA
@@ -3195,6 +3299,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 if(!nl$synonym){
                                   if(nl$taxonomicStatus == "ACCEPTED"){
                                     NAME <- nl$scientificName
+                                    KEY <- nl$key
                                     STATUS <- nl$taxonomicStatus
                                     RANK <- nl$rank
                                     NOTE <- "FUZZY MATCHING"
@@ -3222,6 +3327,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       nl <- name_usage(key=nl$acceptedKey)$data
                                       if(nl$taxonomicStatus == "ACCEPTED"){
                                         NAME <- nl$scientificName
+                                        KEY <- nl$key
                                         STATUS <- nl$taxonomicStatus
                                         RANK <- nl$rank
                                         NOTE <- "FUZZY MATCHING"
@@ -3250,6 +3356,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     } else {
                                       if(nl$taxonomicStatus == "DOUBTFUL"){
                                         NAME <- nl$scientificName
+                                        KEY <- nl$key
                                         STATUS <- nl$taxonomicStatus
                                         RANK <- nl$rank
                                         NOTE <- "FUZZY MATCHING"
@@ -3282,6 +3389,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     nl <- name_usage(key=nl$acceptedKey)$data
                                     if(nl$taxonomicStatus == "ACCEPTED"){
                                       NAME <- nl$scientificName
+                                      KEY <- nl$key
                                       STATUS <- nl$taxonomicStatus
                                       RANK <- nl$rank
                                       NOTE <- "FUZZY MATCHING"
@@ -3307,6 +3415,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     } else {
                                       if(nl$taxonomicStatus == "DOUBTFUL"){
                                         NAME <- nl$scientificName
+                                        KEY <- nl$key
                                         STATUS <- nl$taxonomicStatus
                                         RANK <- nl$rank
                                         NOTE <- "FUZZY MATCHING"
@@ -3345,6 +3454,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     if(!nl$synonym){
                                       if(nl$taxonomicStatus == "ACCEPTED"){
                                         NAME <- nl$scientificName
+                                        KEY <- nl$key
                                         STATUS <- nl$taxonomicStatus
                                         RANK <- nl$rank
                                         NOTE <- "FUZZY MATCHING"
@@ -3372,6 +3482,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           nl <- name_usage(key=nl$acceptedKey)$data
                                           if(nl$taxonomicStatus == "ACCEPTED"){
                                             NAME <- nl$scientificName
+                                            KEY <- nl$key
                                             STATUS <- nl$taxonomicStatus
                                             RANK <- nl$rank
                                             NOTE <- "FUZZY MATCHING"
@@ -3400,6 +3511,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         } else {
                                           if(nl$taxonomicStatus == "DOUBTFUL"){
                                             NAME <- nl$scientificName
+                                            KEY <- nl$key
                                             STATUS <- nl$taxonomicStatus
                                             RANK <- nl$rank
                                             NOTE <- "FUZZY MATCHING"
@@ -3432,6 +3544,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         nl <- name_usage(key=nl$acceptedKey)$data
                                         if(nl$taxonomicStatus == "ACCEPTED"){
                                           NAME <- nl$scientificName
+                                          KEY <- nl$key
                                           STATUS <- nl$taxonomicStatus
                                           RANK <- nl$rank
                                           NOTE <- "FUZZY MATCHING"
@@ -3476,6 +3589,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                 success <- TRUE
                                 NAME <- nl1$scientificName
+                                KEY <- nl1$key
                                 STATUS <- nl1$taxonomicStatus
                                 SPEC_NAME <- NA
                                 RANK <- nl1$rank
@@ -3492,6 +3606,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                     success <- TRUE
                                     NAME <- nl1$scientificName
+                                    KEY <- nl1$key
                                     STATUS <- nl1$taxonomicStatus
                                     SPEC_NAME <- NA
                                     RANK <- nl1$rank
@@ -3503,6 +3618,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             }
                             if(success == FALSE){
                               NAME <- NA
+                              KEY <- NA
                               STATUS <- NA
                               RANK <- NA
                               NOTE = "NOT FOUND"
@@ -3521,6 +3637,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 if(!nl$synonym){
                                   if(nl$taxonomicStatus == "ACCEPTED"){
                                     NAME <- nl$scientificName
+                                    KEY <- nl$key
                                     STATUS <- nl$taxonomicStatus
                                     NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
                                     RANK <- nl$rank
@@ -3548,6 +3665,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       nl <- name_usage(key=nl$acceptedKey)$data
                                       if(nl$taxonomicStatus == "ACCEPTED"){
                                         NAME <- nl$scientificName
+                                        KEY <- nl$key
                                         STATUS <- nl$taxonomicStatus
                                         RANK <- nl$rank
                                         NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
@@ -3576,6 +3694,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     } else {
                                       if(nl$taxonomicStatus == "DOUBTFUL"){
                                         NAME <- nl$scientificName
+                                        KEY <- nl$key
                                         STATUS <- nl$taxonomicStatus
                                         RANK <- nl$rank
                                         NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
@@ -3608,6 +3727,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     nl <- name_usage(key=nl$acceptedKey)$data
                                     if(nl$taxonomicStatus == "ACCEPTED"){
                                       NAME <- nl$scientificName
+                                      KEY <- nl$key
                                       STATUS <- nl$taxonomicStatus
                                       NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
                                       RANK <- nl$rank
@@ -3648,6 +3768,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       if(!nl$synonym){
                                         if(nl$taxonomicStatus == "ACCEPTED"){
                                           NAME <- nl$scientificName
+                                          KEY <- nl$key
                                           STATUS <- nl$taxonomicStatus
                                           NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
                                           RANK <- nl$rank
@@ -3675,6 +3796,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                             nl <- name_usage(key=nl$acceptedKey)$data
                                             if(nl$taxonomicStatus == "ACCEPTED"){
                                               NAME <- nl$scientificName
+                                              KEY <- nl$key
                                               STATUS <- nl$taxonomicStatus
                                               RANK <- nl$rank
                                               NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
@@ -3703,6 +3825,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           } else {
                                             if(nl$taxonomicStatus == "DOUBTFUL"){
                                               NAME <- nl$scientificName
+                                              KEY <- nl$key
                                               STATUS <- nl$taxonomicStatus
                                               RANK <- nl$rank
                                               NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
@@ -3735,6 +3858,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           nl <- name_usage(key=nl$acceptedKey)$data
                                           if(nl$taxonomicStatus == "ACCEPTED"){
                                             NAME <- nl$scientificName
+                                            KEY <- nl$key
                                             STATUS <- nl$taxonomicStatus
                                             NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
                                             RANK <- nl$rank
@@ -3775,6 +3899,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                           success <- TRUE
                                           NAME <- nl1$scientificName
+                                          KEY <- nl1$key
                                           STATUS <- nl1$taxonomicStatus
                                           NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
                                           RANK <- nl1$rank
@@ -3809,6 +3934,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                             if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                               success <- TRUE
                                               NAME <- nl1$scientificName
+                                              KEY <- nl1$key
                                               STATUS <- nl1$taxonomicStatus
                                               NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
                                               RANK <- nl1$rank
@@ -3838,6 +3964,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       }
                                       if(success == FALSE){
                                         NAME <- NA
+                                        KEY <- NA
                                         STATUS <- NA
                                         RANK <- NA
                                         NOTE = "NOT FOUND"
@@ -3854,6 +3981,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                     if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                       success <- TRUE
                                       NAME <- nl1$scientificName
+                                      KEY <- nl1$key
                                       STATUS <- nl1$taxonomicStatus
                                       RANK <- nl1$rank
                                       NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
@@ -3888,6 +4016,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                         if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                           success <- TRUE
                                           NAME <- nl1$scientificName
+                                          KEY <- nl1$key
                                           STATUS <- nl1$taxonomicStatus
                                           RANK <- nl1$rank
                                           NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
@@ -3917,6 +4046,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   }
                                   if(success == FALSE){
                                     NAME <- NA
+                                    KEY <- NA
                                     STATUS <- NA
                                     RANK <- NA
                                     NOTE = "NOT FOUND"
@@ -3931,6 +4061,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(length(strsplit(i, " ")[[1]]) == 2){
                               if(strsplit(i, " ")[[1]][2] == "spec."){
                                 NAME <- NA
+                                KEY <- NA
                                 STATUS <- NA
                                 SPEC_NAME <- NA
                                 RANK <- NA
@@ -3947,6 +4078,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
               } else {
                 if(is.null(NAME)){
                   NAME <- NA
+                  KEY <- NA
                   STATUS <- NA
                   NOTE = "NOT FOUND"
                   RANK <- NA
@@ -3966,6 +4098,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                    found_name = "FAILED",
                    taxon_status = "FAILED",
                    taxon_rank = "FAILED",
+                   taxon_key = "FAILED",
                    species_name = "FAILED",
                    canonical_name = "FAILED",
                    canonical_species_name = "FAILED",
@@ -3979,6 +4112,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                        found_name = NA,
                                        taxon_status = NA,
                                        taxon_rank = NA,
+                                       taxon_key = NA,
                                        species_name = NA,
                                        canonical_name = NA,
                                        canonical_species_name = NA,
@@ -4012,6 +4146,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                          found_name = "FAILED",
                                          taxon_status = "FAILED",
                                          taxon_rank = "FAILED",
+                                         taxon_key = "FAILED",
                                          species_name = "FAILED",
                                          canonical_name = "FAILED",
                                          canonical_species_name = "FAILED",
@@ -4028,6 +4163,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                          found_name = NAME,
                                          taxon_status = STATUS,
                                          taxon_rank = RANK,
+                                         taxon_key = KEY,
                                          species_name = SPEC_NAME,
                                          canonical_name = parsed,
                                          canonical_species_name = spec_parsed,
