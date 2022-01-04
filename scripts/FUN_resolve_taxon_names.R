@@ -1,4 +1,4 @@
-# orig_name <- "SYMPHYTUM OFFICINALE X ASPERUM = S. X UPLANDICUM"
+# orig_name <- "Sabulina rubella (Wahlenb.) Dillenb. & Kadereit"
 # dataset_key <- "d9a4eedb-e985-4456-ad46-3df8472e00e8"
 # resolve_taxon_name(orig_name)
 # resolve_taxon_name(orig_name, dataset = "bae5856f-da10-4333-90a0-5a2135361b30")
