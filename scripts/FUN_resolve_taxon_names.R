@@ -1,8 +1,20 @@
-# orig_name <- "Sabulina rubella (Wahlenb.) Dillenb. & Kadereit"
+# orig_name <- "Hedlundia hybrida (L.) Sennikov & Kurtto"
 # dataset_key <- "d9a4eedb-e985-4456-ad46-3df8472e00e8"
 # resolve_taxon_name(orig_name)
 # resolve_taxon_name(orig_name, dataset = "bae5856f-da10-4333-90a0-5a2135361b30")
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(), maxtry = 2){
+  
+  tested_keys <- c(LCVP = "bae5856f-da10-4333-90a0-5a2135361b30", # The Leipzig catalogue of vascular plants
+                   GBIF = "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c", # GBIF BACKBONE
+                   LIFE = "7ddf754f-d193-4cc9-b351-99906754a03b", # Catalogue of life
+                   IPNI = "046bbc50-cae2-47ff-aa43-729fbf53f7c5", # International Plant Names Index
+                   WCVP = "f382f0ce-323a-4091-bb9f-add557f3a9a2", # The World Checklist of Vascular Plants (WCVP)
+                   TPL = "d9a4eedb-e985-4456-ad46-3df8472e00e8", # The plant list
+                   ITIS = "9ca92552-f23a-41a8-a140-01abaa31c931") # Integrated Taxonomic Information System (ITIS)
+  
+  if(any(c("LCVP","GBIF","LIFE","IPNI","WCVP","TPL","ITIS") %in% dataset)){
+    dataset <- tested_keys[dataset]
+  }
   
   if(is.null(dataset)){
     dataset <- c(LCVP = "bae5856f-da10-4333-90a0-5a2135361b30", # The Leipzig catalogue of vascular plants
@@ -13,14 +25,6 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                  TPL = "d9a4eedb-e985-4456-ad46-3df8472e00e8", # The plant list
                  ITIS = "9ca92552-f23a-41a8-a140-01abaa31c931") # Integrated Taxonomic Information System (ITIS)
   }
-  
-  tested_keys <- c(LCVP = "bae5856f-da10-4333-90a0-5a2135361b30", # The Leipzig catalogue of vascular plants
-                   GBIF = "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c", # GBIF BACKBONE
-                   LIFE = "7ddf754f-d193-4cc9-b351-99906754a03b", # Catalogue of life
-                   IPNI = "046bbc50-cae2-47ff-aa43-729fbf53f7c5", # International Plant Names Index
-                   WCVP = "f382f0ce-323a-4091-bb9f-add557f3a9a2", # The World Checklist of Vascular Plants (WCVP)
-                   TPL = "d9a4eedb-e985-4456-ad46-3df8472e00e8", # The plant list
-                   ITIS = "9ca92552-f23a-41a8-a140-01abaa31c931") # Integrated Taxonomic Information System (ITIS)
   
   # Test if the given dataset id in the tested ones
   if(all(dataset %in% tested_keys)){
