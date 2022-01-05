@@ -1,9 +1,10 @@
-# resolve_higher_taxonomy_key(118841318)
+# resolve_higher_taxonomy_key(186341026)
+# KEY <- 186341026
 resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
   
   if(is.null(KEY)){
     df <- data.frame(orig_key = NA,
-                     orig_name = NA,
+                     taxon_name = NA,
                      genus = NA,
                      genus_key = NA,
                      family = NA,
@@ -17,7 +18,7 @@ resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
   
   if(length(KEY) == 0 | is.na(KEY)){
     df <- data.frame(orig_key = NA,
-                     orig_name = NA,
+                     taxon_name = NA,
                      genus = NA,
                      genus_key = NA,
                      family = NA,
@@ -68,12 +69,19 @@ resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
         } else {
           stop()
         }
+      } else {
+        if(nl$rank %in% c("SPECIES","FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
+          GENUS <- strsplit(nl$scientificName, " ")[[1]][1]
+          NOTE <- "GENUS EXTRACTED FROM SPECIES NAME"
+        } else {
+          stop()
+        }
       }
     } else {
-      stop("No rows!")
+      stop()
     }
     
-    if(!is.na(GENUSKEY)){
+    if(!is.na(GENUSKEY) | !is.na(GENUS)){
       
       if(nrow(nl) == 1){
         if("familyKey" %in% names(nl)){
@@ -104,15 +112,14 @@ resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
           }
         }
       } else {
-        stop("No rows!")
+        stop()
       }
-      
     }
   })
   
   if(class(e) == "try-error"){
     df <- data.frame(orig_key = KEY,
-                     orig_name = NA,
+                     taxon_name = NA,
                      genus = NA,
                      genus_key = NA,
                      family = NA,
@@ -121,7 +128,7 @@ resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
     return(df)
   } else {
     df <- data.frame(orig_key = KEY,
-                     orig_name = ORIGNAME,
+                     taxon_name = ORIGNAME,
                      genus = GENUS,
                      genus_key = GENUSKEY,
                      family = FAMILY,
