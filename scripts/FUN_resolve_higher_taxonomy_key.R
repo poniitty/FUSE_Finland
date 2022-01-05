@@ -2,6 +2,8 @@
 # KEY <- 186341026
 resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
   
+  ORIGKEY <- KEY
+  
   if(is.null(KEY)){
     df <- data.frame(orig_key = NA,
                      taxon_name = NA,
@@ -18,7 +20,7 @@ resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
   KEY <- as.numeric(KEY)
   
   if(length(KEY) == 0 | is.na(KEY)){
-    df <- data.frame(orig_key = NA,
+    df <- data.frame(orig_key = ORIGKEY,
                      taxon_name = NA,
                      genus = NA,
                      genus_key = NA,
@@ -136,7 +138,7 @@ resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
   })
   
   if(class(e) == "try-error"){
-    df <- data.frame(orig_key = KEY,
+    df <- data.frame(orig_key = ORIGKEY,
                      taxon_name = NA,
                      genus = NA,
                      genus_key = NA,
@@ -146,7 +148,7 @@ resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
                      note_higher = "FAILED")
     return(df)
   } else {
-    df <- data.frame(orig_key = KEY,
+    df <- data.frame(orig_key = ORIGKEY,
                      taxon_name = ORIGNAME,
                      genus = GENUS,
                      genus_key = GENUSKEY,
