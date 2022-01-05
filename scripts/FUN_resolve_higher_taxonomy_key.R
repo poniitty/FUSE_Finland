@@ -1,5 +1,5 @@
 # resolve_higher_taxonomy_key(186341026)
-# KEY <- 186341026
+# KEY <- 186399257
 resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
   
   ORIGKEY <- KEY
@@ -92,7 +92,12 @@ resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
           GENUS <- strsplit(nl$scientificName, " ")[[1]][1]
           NOTE <- "GENUS EXTRACTED FROM SPECIES NAME"
         } else {
-          stop()
+          if(nl$rank %in% c("UNRANKED")){
+            GENUS <- strsplit(nl$scientificName, " ")[[1]][1]
+            NOTE <- "GENUS EXTRACTED FROM UNRANKED NAME"
+          } else {
+            stop()
+          }
         }
       }
     } else {
