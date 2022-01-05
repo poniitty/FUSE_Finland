@@ -130,6 +130,8 @@ resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
       } else {
         stop()
       }
+    } else {
+      stop()
     }
   })
   
