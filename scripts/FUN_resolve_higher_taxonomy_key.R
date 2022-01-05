@@ -1,5 +1,5 @@
-# resolve_higher_taxonomy_key(186341026)
-# KEY <- 186399257
+# resolve_higher_taxonomy_key(186399257)
+# KEY <- 3070106
 resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
   
   ORIGKEY <- KEY
@@ -74,11 +74,19 @@ resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
                 GENUS <- nl$genus
                 GENUSKEY <- nl$key
               } else {
-                stop()
+                if(nl$taxonomicStatus == "DOUBTFUL"){
+                  GENUS <- nl$genus
+                  GENUSKEY <- nl$key
+                  NOTE <- "GENUS STATUS DOUBTFUL"
+                } else {
+                  stop()
+                }
               }
             } else {
               if(nl$taxonomicStatus == "DOUBTFUL"){
-                stop("DOUBTFUL")
+                GENUS <- nl$genus
+                GENUSKEY <- nl$key
+                NOTE <- "GENUS STATUS DOUBTFUL"
               } else {
                 stop()
               }
@@ -120,11 +128,19 @@ resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
                   FAMILY <- nl$family
                   FAMILYKEY <- nl$key
                 } else {
-                  stop()
+                  if(nl$taxonomicStatus == "DOUBTFUL"){
+                    FAMILY <- nl$family
+                    FAMILYKEY <- nl$key
+                    NOTE <- "FAMILY STATUS DOUBTFUL"
+                  } else {
+                    stop()
+                  }
                 }
               } else {
                 if(nl$taxonomicStatus == "DOUBTFUL"){
-                  stop()
+                  FAMILY <- nl$family
+                  FAMILYKEY <- nl$key
+                  NOTE <- "FAMILY STATUS DOUBTFUL"
                 } else {
                   stop()
                 }
