@@ -1,5 +1,5 @@
-# resolve_higher_taxonomy_key(185710443)
-# KEY <- 185710443
+# resolve_higher_taxonomy_key(181270722)
+# KEY <- 181270722
 resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
   
   ORIGKEY <- KEY
@@ -53,6 +53,11 @@ resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
   
   e <- try({
     nl <- name_usage(key = KEY)$data
+    if(nrow(nl) > 1){
+      if(length(unique(nl$genus)) == 1){
+        nl <- nl[1,]
+      }
+    }
     ORIGNAME <- nl$scientificName
     if(nl$datasetKey %in% tested_keys){
       DATASET <- names(which(tested_keys == nl$datasetKey))
