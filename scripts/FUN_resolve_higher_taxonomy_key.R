@@ -1,5 +1,5 @@
-# resolve_higher_taxonomy_key(186399257)
-# KEY <- 3070106
+# resolve_higher_taxonomy_key(185710443)
+# KEY <- 185710443
 resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
   
   ORIGKEY <- KEY
@@ -104,7 +104,11 @@ resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
             GENUS <- strsplit(nl$scientificName, " ")[[1]][1]
             NOTE <- "GENUS EXTRACTED FROM UNRANKED NAME"
           } else {
-            stop()
+            if(nl$rank %in% c("FAMILY")){
+              NOTE <- "FAMILY-LEVEL TAXON"
+            } else {
+              stop()
+            }
           }
         }
       }
@@ -112,7 +116,7 @@ resolve_higher_taxonomy_key <- function(KEY = NULL, lib.loc = .libPaths()){
       stop()
     }
     
-    if(!is.na(GENUSKEY) | !is.na(GENUS)){
+    if(!is.na(GENUSKEY) | !is.na(GENUS) | nl$rank %in% c("FAMILY")){
       
       if(nrow(nl) == 1){
         if("familyKey" %in% names(nl)){
