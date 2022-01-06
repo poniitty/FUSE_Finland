@@ -1,5 +1,5 @@
-# orig_name <- "Betula nana subsp. nana"
-# dataset_key <- "d9a4eedb-e985-4456-ad46-3df8472e00e8"
+# orig_name <- "Gentianella numularifolia"
+# dataset_key <- "7ddf754f-d193-4cc9-b351-99906754a03b"
 # resolve_taxon_name(orig_name)
 # resolve_taxon_name(orig_name, dataset = "bae5856f-da10-4333-90a0-5a2135361b30")
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(), maxtry = 2){
@@ -644,6 +644,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         success <- FALSE
                         for(ikey in nl$key){
                           nl1 <- name_usage(key=ikey)$data
+                          if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                           if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                             success <- TRUE
                             NAME <- nl1$scientificName
@@ -675,6 +676,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         if(success == FALSE){
                           for(ikey in nl$key){
                             nl1 <- name_usage(key=ikey)$data
+                            if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                             if("acceptedKey" %in% names(nl1)){
                               nl1 <- name_usage(key=nl1$acceptedKey)$data
                               
@@ -1155,6 +1157,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                       success <- FALSE
                       for(ikey in nl$key){
                         nl1 <- name_usage(key=ikey)$data
+                        if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                         if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                           success <- TRUE
                           NAME <- nl1$scientificName
@@ -1186,6 +1189,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                       if(success == FALSE){
                         for(ikey in nl$key){
                           nl1 <- name_usage(key=ikey)$data
+                          if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                           if("acceptedKey" %in% names(nl1)){
                             nl1 <- name_usage(key=nl1$acceptedKey)$data
                             
@@ -1577,6 +1581,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         success <- FALSE
                         for(ikey in nl$key){
                           nl1 <- name_usage(key=ikey)$data
+                          if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                           if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                             success <- TRUE
                             NAME <- nl1$scientificName
@@ -1608,6 +1613,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         if(success == FALSE){
                           for(ikey in nl$key){
                             nl1 <- name_usage(key=ikey)$data
+                            if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                             if("acceptedKey" %in% names(nl1)){
                               nl1 <- name_usage(key=nl1$acceptedKey)$data
                               
@@ -1980,6 +1986,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   success <- FALSE
                                   for(ikey in nl$key){
                                     nl1 <- name_usage(key=ikey)$data
+                                    if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                                     if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                       success <- TRUE
                                       NAME <- nl1$scientificName
@@ -2012,6 +2019,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   if(success == FALSE){
                                     for(ikey in nl$key){
                                       nl1 <- name_usage(key=ikey)$data
+                                      if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                                       if("acceptedKey" %in% names(nl1)){
                                         nl1 <- name_usage(key=nl1$acceptedKey)$data
                                         
@@ -2062,6 +2070,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               success <- FALSE
                               for(ikey in nl$key){
                                 nl1 <- name_usage(key=ikey)$data
+                                if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                                 if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                   success <- TRUE
                                   NAME <- nl1$scientificName
@@ -2094,6 +2103,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                               if(success == FALSE){
                                 for(ikey in nl$key){
                                   nl1 <- name_usage(key=ikey)$data
+                                  if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                                   if("acceptedKey" %in% names(nl1)){
                                     nl1 <- name_usage(key=nl1$acceptedKey)$data
                                     
@@ -2655,6 +2665,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           success <- FALSE
                           for(ikey in nl$key){
                             nl1 <- name_usage(key=ikey)$data
+                            if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                             if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                               success <- TRUE
                               NAME <- nl1$scientificName
@@ -2687,6 +2698,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(success == FALSE){
                             for(ikey in nl$key){
                               nl1 <- name_usage(key=ikey)$data
+                              if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                               if("acceptedKey" %in% names(nl1)){
                                 nl1 <- name_usage(key=nl1$acceptedKey)$data
                                 
@@ -3151,6 +3163,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           success <- FALSE
                           for(ikey in nl$key){
                             nl1 <- name_usage(key=ikey)$data
+                            if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                             if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                               success <- TRUE
                               NAME <- nl1$scientificName
@@ -3183,6 +3196,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                           if(success == FALSE){
                             for(ikey in nl$key){
                               nl1 <- name_usage(key=ikey)$data
+                              if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                               if("acceptedKey" %in% names(nl1)){
                                 nl1 <- name_usage(key=nl1$acceptedKey)$data
                                 
@@ -3230,7 +3244,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                         }
                       }
                     } else {
-                      if(nrow(nl) == 100 & grepl("×", orig_name)){
+                      if(nrow(nl) == 100 & (grepl("×", orig_name)|grepl(" x ", orig_name)|grepl(" X ", orig_name))){
                         i <- orig_name
                         NAME <- NA
                         KEY <- NA
@@ -3586,6 +3600,8 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             success <- FALSE
                             for(ikey in nl$key){
                               nl1 <- name_usage(key=ikey)$data
+                              if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
+                              if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                               if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                 success <- TRUE
                                 NAME <- nl1$scientificName
@@ -3600,6 +3616,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                             if(success == FALSE){
                               for(ikey in nl$key){
                                 nl1 <- name_usage(key=ikey)$data
+                                if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                                 if("acceptedKey" %in% names(nl1)){
                                   nl1 <- name_usage(key=nl1$acceptedKey)$data
                                   
@@ -3896,6 +3913,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       success <- FALSE
                                       for(ikey in nl$key){
                                         nl1 <- name_usage(key=ikey)$data
+                                        if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                                         if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                           success <- TRUE
                                           NAME <- nl1$scientificName
@@ -3928,6 +3946,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                       if(success == FALSE){
                                         for(ikey in nl$key){
                                           nl1 <- name_usage(key=ikey)$data
+                                          if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                                           if("acceptedKey" %in% names(nl1)){
                                             nl1 <- name_usage(key=nl1$acceptedKey)$data
                                             
@@ -3978,6 +3997,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   success <- FALSE
                                   for(ikey in nl$key){
                                     nl1 <- name_usage(key=ikey)$data
+                                    if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                                     if(nl1$taxonomicStatus == "ACCEPTED" & ifelse("kingdom" %in% names(nl1), nl1$kingdom == "Plantae", TRUE)){
                                       success <- TRUE
                                       NAME <- nl1$scientificName
@@ -4010,6 +4030,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   if(success == FALSE){
                                     for(ikey in nl$key){
                                       nl1 <- name_usage(key=ikey)$data
+                                      if(nrow(nl1) > 1){ nl1 <- nl1[1,] }
                                       if("acceptedKey" %in% names(nl1)){
                                         nl1 <- name_usage(key=nl1$acceptedKey)$data
                                         
@@ -4066,6 +4087,13 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 SPEC_NAME <- NA
                                 RANK <- NA
                                 NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
+                              } else {
+                                NAME <- NA
+                                KEY <- NA
+                                STATUS <- NA
+                                NOTE = "NOT FOUND"
+                                RANK <- NA
+                                SPEC_NAME <- NA
                               }
                             }
                           }
