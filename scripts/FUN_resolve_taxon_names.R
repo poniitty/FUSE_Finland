@@ -1,5 +1,5 @@
-# orig_name <- "Betulaceae"
-# dataset_key <- "7ddf754f-d193-4cc9-b351-99906754a03b"
+# orig_name <- "ASPLENIUM TRICHOMANES-RAMOSUM L."
+# dataset_key <- "f382f0ce-323a-4091-bb9f-add557f3a9a2"
 # resolve_taxon_name(orig_name)
 # resolve_taxon_name(orig_name, dataset = "bae5856f-da10-4333-90a0-5a2135361b30")
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(), maxtry = 2){
@@ -904,7 +904,16 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                     if(length(strsplit(i," ")[[1]]) == 1){
                       nl <- name_suggest(q=i, rank = "genus", datasetKey = dataset_key)$data
                       if(nrow(nl) > 0){
-                        stop()
+                        if(gbif_parse(i)$canonicalname %in% nl$canonicalName){
+                          
+                        } else {
+                          NAME <- NA
+                          KEY <- NA
+                          STATUS <- NA
+                          RANK <- NA
+                          NOTE = "LIKELY HIGHER LEVEL TAXON"
+                          SPEC_NAME <- NA
+                        }
                       } else {
                         NAME <- NA
                         KEY <- NA
@@ -970,7 +979,33 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                   }
                                 }
                               } else {
-                                stop()
+                                if(nl$taxonomicStatus == "DOUBTFUL"){
+                                  NAME <- nl$scientificName
+                                  KEY <- nl$key
+                                  STATUS <- nl$taxonomicStatus
+                                  RANK <- nl$rank
+                                  if(nl$rank == "SPECIES"){
+                                    SPEC_NAME <- nl$scientificName
+                                  } else {
+                                    if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
+                                      if("speciesKey" %in% names(nl)){
+                                        nl <- name_usage(key=nl$speciesKey)$data
+                                        SPEC_NAME <- nl$scientificName
+                                      } else {
+                                        SPEC_NAME <- NA
+                                      }
+                                    } else {
+                                      if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN","DOMAIN")){
+                                        SPEC_NAME <- NA
+                                        NOTE <- "LIKELY HIGHER LEVEL TAXON"
+                                      } else {
+                                        stop()
+                                      }
+                                    }
+                                  }
+                                } else {
+                                  stop()
+                                }
                               }
                             } else {
                               if(nl$taxonomicStatus == "DOUBTFUL"){
@@ -1030,7 +1065,33 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                 }
                               }
                             } else {
-                              stop()
+                              if(nl$taxonomicStatus == "DOUBTFUL"){
+                                NAME <- nl$scientificName
+                                KEY <- nl$key
+                                STATUS <- nl$taxonomicStatus
+                                RANK <- nl$rank
+                                if(nl$rank == "SPECIES"){
+                                  SPEC_NAME <- nl$scientificName
+                                } else {
+                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
+                                    if("speciesKey" %in% names(nl)){
+                                      nl <- name_usage(key=nl$speciesKey)$data
+                                      SPEC_NAME <- nl$scientificName
+                                    } else {
+                                      SPEC_NAME <- NA
+                                    }
+                                  } else {
+                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN","DOMAIN")){
+                                      SPEC_NAME <- NA
+                                      NOTE <- "LIKELY HIGHER LEVEL TAXON"
+                                    } else {
+                                      stop()
+                                    }
+                                  }
+                                }
+                              } else {
+                                stop()
+                              }
                             }
                           } else {
                             stop()
