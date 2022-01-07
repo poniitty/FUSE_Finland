@@ -1,4 +1,4 @@
-# orig_name <- "ASPLENIUM TRICHOMANES-RAMOSUM L."
+# orig_name <- "Chenopodium murale L. var. (mixed with album)"
 # dataset_key <- "f382f0ce-323a-4091-bb9f-add557f3a9a2"
 # resolve_taxon_name(orig_name)
 # resolve_taxon_name(orig_name, dataset = "bae5856f-da10-4333-90a0-5a2135361b30")
@@ -49,8 +49,10 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
           try({
             i <- orig_name
             nl <- gbif_parse(i)
-            if(length(strsplit(nl$canonicalname," ")[[1]]) < 2){
-              i <- nl$canonicalname
+            if("canonicalname" %in% names(nl)){
+              if(length(strsplit(nl$canonicalname," ")[[1]]) < 2){
+                i <- nl$canonicalname
+              }
             }
             
             try(if(Encoding(i) == "latin1"){
@@ -2462,8 +2464,10 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
             if(is.null(NAME) | NOTE == "PARSED TO SPECIES"){
               i <- orig_name
               nl <- gbif_parse(i)
-              if(length(strsplit(nl$canonicalname," ")[[1]]) < 2){
-                i <- nl$canonicalname
+              if("canonicalname" %in% names(nl)){
+                if(length(strsplit(nl$canonicalname," ")[[1]]) < 2){
+                  i <- nl$canonicalname
+                }
               }
               
               try(if(Encoding(i) == "latin1"){
@@ -4258,7 +4262,34 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                           }
                                         }
                                       } else {
-                                        stop()
+                                        if(nl$taxonomicStatus == "DOUBTFUL"){
+                                          NAME <- nl$scientificName
+                                          KEY <- nl$key
+                                          STATUS <- nl$taxonomicStatus
+                                          RANK <- nl$rank
+                                          NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
+                                          if(nl$rank == "SPECIES"){
+                                            SPEC_NAME <- nl$scientificName
+                                          } else {
+                                            if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
+                                              if("speciesKey" %in% names(nl)){
+                                                nl <- name_usage(key=nl$speciesKey)$data
+                                                SPEC_NAME <- nl$scientificName
+                                              } else {
+                                                SPEC_NAME <- NA
+                                              }
+                                            } else {
+                                              if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN","DOMAIN")){
+                                                SPEC_NAME <- NA
+                                                NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
+                                              } else {
+                                                stop()
+                                              }
+                                            }
+                                          }
+                                        } else {
+                                          stop()
+                                        }
                                       }
                                     } else {
                                       stop()
@@ -4327,7 +4358,34 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                                   }
                                                 }
                                               } else {
-                                                stop()
+                                                if(nl$taxonomicStatus == "DOUBTFUL"){
+                                                  NAME <- nl$scientificName
+                                                  KEY <- nl$key
+                                                  STATUS <- nl$taxonomicStatus
+                                                  RANK <- nl$rank
+                                                  NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
+                                                  if(nl$rank == "SPECIES"){
+                                                    SPEC_NAME <- nl$scientificName
+                                                  } else {
+                                                    if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
+                                                      if("speciesKey" %in% names(nl)){
+                                                        nl <- name_usage(key=nl$speciesKey)$data
+                                                        SPEC_NAME <- nl$scientificName
+                                                      } else {
+                                                        SPEC_NAME <- NA
+                                                      }
+                                                    } else {
+                                                      if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN","DOMAIN")){
+                                                        SPEC_NAME <- NA
+                                                        NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
+                                                      } else {
+                                                        stop()
+                                                      }
+                                                    }
+                                                  }
+                                                } else {
+                                                  stop()
+                                                }
                                               }
                                             } else {
                                               if(nl$taxonomicStatus == "DOUBTFUL"){
@@ -4389,7 +4447,34 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                                                 }
                                               }
                                             } else {
-                                              stop()
+                                              if(nl$taxonomicStatus == "DOUBTFUL"){
+                                                NAME <- nl$scientificName
+                                                KEY <- nl$key
+                                                STATUS <- nl$taxonomicStatus
+                                                RANK <- nl$rank
+                                                NOTE = "FUZZY MATCHING! PARSED TO SPECIES"
+                                                if(nl$rank == "SPECIES"){
+                                                  SPEC_NAME <- nl$scientificName
+                                                } else {
+                                                  if(nl$rank %in% c("FORM","SUBSPECIES","VARIETY","INFRASPECIFIC_NAME")){
+                                                    if("speciesKey" %in% names(nl)){
+                                                      nl <- name_usage(key=nl$speciesKey)$data
+                                                      SPEC_NAME <- nl$scientificName
+                                                    } else {
+                                                      SPEC_NAME <- NA
+                                                    }
+                                                  } else {
+                                                    if(nl$rank %in% c("GENUS","FAMILY","CLASS","KINGDOM","ORDER","PHYLUM","STRAIN","DOMAIN")){
+                                                      SPEC_NAME <- NA
+                                                      NOTE <- "FUZZY MATCHING! LIKELY HIGHER LEVEL TAXON"
+                                                    } else {
+                                                      stop()
+                                                    }
+                                                  }
+                                                }
+                                              } else {
+                                                stop()
+                                              }
                                             }
                                           } else {
                                             stop()
