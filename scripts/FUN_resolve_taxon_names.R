@@ -1,4 +1,4 @@
-# orig_name <- "Linnaea borealis longiflora"
+# orig_name <- "Equisetum arvense × palustre"
 # dataset_key <- "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"
 # resolve_taxon_name(orig_name, dataset = "d9a4eedb-e985-4456-ad46-3df8472e00e8")
 # resolve_taxon_name(orig_name, dataset = NULL)
@@ -5070,7 +5070,7 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
             }
             
             resolved_temp2 <- data.frame(orig_name = orig_name,
-                                         used_name = i,
+                                         used_name = ifelse(is.null(i), orig_name, i),
                                          found_name = NAME,
                                          taxon_status = STATUS,
                                          taxon_rank = RANK,
