@@ -1,7 +1,7 @@
-# orig_name <- "Elytrigia campestris subsp. maritima (Tzvelev) H. Scholz"
-# dataset_key <- "7ddf754f-d193-4cc9-b351-99906754a03b"
-# resolve_taxon_name(orig_name)
-# resolve_taxon_name(orig_name, dataset = "bae5856f-da10-4333-90a0-5a2135361b30")
+# orig_name <- "Linnaea borealis longiflora"
+# dataset_key <- "d7dddbf4-2cf0-4f39-9b2a-bb099caae36c"
+# resolve_taxon_name(orig_name, dataset = "d9a4eedb-e985-4456-ad46-3df8472e00e8")
+# resolve_taxon_name(orig_name, dataset = NULL)
 resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(), maxtry = 2){
   
   tested_keys <- c(LCVP = "bae5856f-da10-4333-90a0-5a2135361b30", # The Leipzig catalogue of vascular plants
@@ -29,13 +29,12 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
   # Test if the given dataset id in the tested ones
   if(all(dataset %in% tested_keys)){
     
-    
     pckg <- require(rgbif, lib.loc = lib.loc)
     if(!pckg){stop("package ´rgbif´ not found")}
     pckg <- require(taxize, lib.loc = lib.loc)
     if(!pckg){stop("package ´taxize´ not found")}
-    pckg <- require(Taxonstand, lib.loc = lib.loc)
-    if(!pckg){stop("package ´Taxonstand´ not found")}
+    # pckg <- require(Taxonstand, lib.loc = lib.loc)
+    # if(!pckg){stop("package ´Taxonstand´ not found")}
     
     resolved_temp <- data.frame() # To store names
     for(dataset_key in dataset){
@@ -2717,8 +2716,9 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
               }
               i <- paste(strsplit(i, " ")[[1]], collapse = " ")
               
-              tp <- TPL(i, diffchar = 1, max.distance = 1)
-              if((length(strsplit(i, " ")[[1]]) == 1 & i == tp$New.Genus)){
+              tp <- name_backbone(i)
+              
+              if((length(strsplit(i, " ")[[1]]) == 1) | (tp$matchType == "HIGHERRANK" & length(strsplit(i, " ")[[1]]) == 2)){
                 NAME <- NA
                 KEY <- NA
                 STATUS <- NA
@@ -2726,8 +2726,9 @@ resolve_taxon_name <- function(orig_name, dataset = NULL, lib.loc = .libPaths(),
                 RANK <- NA
                 SPEC_NAME <- NA
               } else {
-                if(tp$Typo & tp$Plant.Name.Index){
-                  i <- gbif_parse(paste0(c(tp$New.Genus, tp$New.Hybrid.marker, tp$New.Species, tp$New.Infraspecific.rank, tp$New.Infraspecific, tp$New.Authority), collapse = " "))$canonicalnamecomplete
+                if(tp$matchType != "NONE"){
+                  tp <- tp[tp$kingdom == "Plantae"]
+                  i <- gbif_parse(tp$scientificName)$canonicalnamecomplete
                   
                   nl <- name_suggest(q=i, datasetKey = dataset_key)$data
                   
